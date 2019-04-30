@@ -1,0 +1,11 @@
+# Folders
+
+/.vscode
+/.gradle
+/.settings
+/bin
+/build
+
+# Files
+.project
+.classpath
