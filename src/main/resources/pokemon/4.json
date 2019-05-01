@@ -1,0 +1,11 @@
+{
+    "id": 4,
+    "pokedex_id": "004",
+    "name" : "Charmander",
+    "types": [
+        {
+            "name": "Fire"
+        }
+    ],
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
+}

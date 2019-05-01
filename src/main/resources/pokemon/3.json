@@ -1,0 +1,14 @@
+{
+    "id": 3,
+    "pokedex_id": "003",
+    "name" : "Venusaur",
+    "types": [
+        {
+            "name": "Grass"
+        },
+        {
+            "name": "Poison"
+        }
+    ],
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"
+}

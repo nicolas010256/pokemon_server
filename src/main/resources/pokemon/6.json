@@ -1,0 +1,11 @@
+{
+    "id": 6,
+    "pokedex_id": "006",
+    "name" : "Charizard",
+    "types": [
+        {
+            "name": "Fire"
+        }
+    ],
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
+}

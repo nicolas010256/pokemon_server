@@ -1,0 +1,14 @@
+{
+    "id": 1,
+    "pokedex_id": "001",
+    "name" : "Bulbasaur",
+    "types": [
+        {
+            "name": "Grass"
+        },
+        {
+            "name": "Poison"
+        }
+    ],
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+}

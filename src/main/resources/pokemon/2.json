@@ -1,0 +1,14 @@
+{
+    "id": 2,
+    "pokedex_id": "002",
+    "name" : "Ivysaur",
+    "types": [
+        {
+            "name": "Grass"
+        },
+        {
+            "name": "Poison"
+        }
+    ],
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"
+}
