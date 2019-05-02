@@ -1,5 +1,12 @@
 package pokemon.server.controller;
 
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.json.JSONObject;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +18,26 @@ public class MoveController {
     
     @CrossOrigin
     @GetMapping("/move/{id}")
-    public ResponseEntity getMove(@PathVariable("id") long id) {
-        return null;
+    public ResponseEntity<String> getMove(@PathVariable("id") long id) {
+        JSONObject json = null;
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(MediaType.APPLICATION_JSON);
+        try {
+            String data = readFile(getClass().getResource("/move/" + id + ".json").getFile());
+            json = new JSONObject(data);
+            return new ResponseEntity<String>(json.toString(), header, HttpStatus.OK);
+        } catch(IOException | NullPointerException e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    private String readFile(String file) throws IOException {
+        StringBuffer buffer = new StringBuffer();
+        FileReader reader = new FileReader(file);
+        while (reader.ready()) {
+            buffer.append((char) reader.read());
+        }
+        reader.close();
+        return buffer.toString();
     }
 }

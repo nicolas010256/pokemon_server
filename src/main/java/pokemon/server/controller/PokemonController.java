@@ -27,7 +27,7 @@ public class PokemonController {
             String data = readFile(getClass().getResource("/pokemon/all.json/").getFile());
             json = new JSONArray(data);
             return new ResponseEntity<String>(json.toString(), header, HttpStatus.OK);
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
@@ -44,7 +44,7 @@ public class PokemonController {
             json = new JSONObject(data);
 
             return new ResponseEntity<String>(json.toString(), header, HttpStatus.OK);
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
 
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
