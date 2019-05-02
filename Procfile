@@ -1,0 +1,1 @@
+web: java -jar pokemon-server-0.0.1.war
