@@ -28,7 +28,7 @@ public class PokemonController {
             json = new JSONArray(data);
             return new ResponseEntity<String>(json.toString(), header, HttpStatus.OK);
         } catch (IOException | NullPointerException e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Erro", HttpStatus.NOT_FOUND);
         }
     }
 
