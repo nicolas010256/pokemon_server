@@ -1,1 +1,0 @@
-web: java -Dspring.profiles.active=production -jar build/libs/pokemon-server-0.0.1.war
