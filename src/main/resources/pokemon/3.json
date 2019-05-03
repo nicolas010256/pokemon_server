@@ -11,5 +11,22 @@
         }
     ],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
-    "moves": []
+    "moves": [
+        {
+            "id": 14,
+            "name": "Swords Dance"
+        },
+        {
+            "id": 15,
+            "name": "Cut"
+        },
+        {
+            "id": 20,
+            "name": "Bind"
+        },
+        {
+            "id": 22,
+            "name": "Vine Whip"
+        }
+    ]
 }

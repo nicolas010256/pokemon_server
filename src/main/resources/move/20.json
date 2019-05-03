@@ -1,7 +1,7 @@
 {
-    "id": 15,
-    "name": "Cut",
-    "power": 50,
-    "accuracy": 95,
-    "pp": 30
+    "id": 20,
+    "name": "Bind",
+    "power": 15,
+    "accuracy": 85,
+    "pp": 20
 }

@@ -8,5 +8,22 @@
         }
     ],
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
-    "moves": []
+    "moves": [
+        {
+            "id": 5,
+            "name": "Mega Punch"
+        },
+        {
+            "id": 7,
+            "name": "Fire Punch"
+        },
+        {
+            "id": 9,
+            "name": "Thunder Punch"
+        },
+        {
+            "id": 10,
+            "name": "Scratch"
+        }
+    ]
 }

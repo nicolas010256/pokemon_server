@@ -14,30 +14,20 @@
     "moves": [
         {
             "id": 13,
-            "name": "Razor Wind",
-            "power": 80,
-            "accuracy" : 100,
-            "pp": 10
+            "name": "Razor Wind"
+
         },
         {
             "id": 14,
-            "name": "Swords Dance",
-            "power": null,
-            "accuracy": null,
-            "pp": 20
+            "name": "Swords Dance"
         },
         {
             "id": 15,
-            "name": "Cut",
-            "power": 50,
-            "accuracy": 95,
-            "pp": 30
-        }, {
+            "name": "Cut"
+        }, 
+        {
             "id": 20,
-            "name": "Bind",
-            "power": 15,
-            "accuracy": 85,
-            "pp": 20
+            "name": "Bind"
         }
     ]
 }
