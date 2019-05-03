@@ -1,7 +1,7 @@
 package pokemon.server.controller;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import org.json.JSONObject;
 import org.springframework.http.HttpHeaders;
@@ -23,7 +23,7 @@ public class MoveController {
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
         try {
-            String data = readFile(getClass().getResource("/move/" + id + ".json").getFile());
+            String data = readFile("/move/" + id + ".json");
             json = new JSONObject(data);
             return new ResponseEntity<String>(json.toString(), header, HttpStatus.OK);
         } catch(IOException | NullPointerException e) {
@@ -33,7 +33,7 @@ public class MoveController {
 
     private String readFile(String file) throws IOException {
         StringBuffer buffer = new StringBuffer();
-        FileReader reader = new FileReader(file);
+        InputStreamReader reader = new InputStreamReader(getClass().getResourceAsStream(file));
         while (reader.ready()) {
             buffer.append((char) reader.read());
         }

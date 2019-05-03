@@ -1,7 +1,7 @@
 package pokemon.server.controller;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,7 +24,7 @@ public class PokemonController {
         header.setContentType(MediaType.APPLICATION_JSON);
         
         try {
-            String data = readFile(getClass().getResource("/pokemon/all.json/").getFile());
+            String data = readFile("/pokemon/all.json");
             json = new JSONArray(data);
             return new ResponseEntity<String>(json.toString(), header, HttpStatus.OK);
         } catch (IOException | NullPointerException e) {
@@ -40,7 +40,7 @@ public class PokemonController {
         header.setContentType(MediaType.APPLICATION_JSON);
         
         try {
-            String data = readFile(getClass().getResource("/pokemon/" + id + ".json").getFile());
+            String data = readFile("/pokemon/" + id + ".json");
             json = new JSONObject(data);
 
             return new ResponseEntity<String>(json.toString(), header, HttpStatus.OK);
@@ -52,7 +52,7 @@ public class PokemonController {
 
     private String readFile(String file) throws IOException {
         StringBuffer buffer = new StringBuffer();
-        FileReader reader = new FileReader(file);
+        InputStreamReader reader = new InputStreamReader(getClass().getResourceAsStream(file));
         while (reader.ready()) {
             buffer.append((char) reader.read());
         }
