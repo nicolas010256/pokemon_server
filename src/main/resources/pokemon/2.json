@@ -28,5 +28,15 @@
             "id": 22,
             "name": "Vine Whip"
         }
+    ],
+    "abilities": [
+        {
+            "id": 34,
+            "name": "Chlorophyll"
+        },
+        {
+            "id": 65,
+            "name": "Overgrow"
+        }
     ]
 }
