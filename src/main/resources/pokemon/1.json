@@ -29,5 +29,15 @@
             "id": 20,
             "name": "Bind"
         }
+    ],
+    "abilities": [
+        {
+            "id": 34,
+            "name": "Chlorophyll"
+        },
+        {
+            "id": 65,
+            "name": "Overgrow"
+        }
     ]
 }
