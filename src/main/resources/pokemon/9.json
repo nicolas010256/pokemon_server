@@ -1,0 +1,12 @@
+{
+    "id": 9,
+    "pokedex_id": "009",
+    "name": "Blastoise",
+    "types": [
+        {
+            "name": "Water"
+        }
+    ],
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png",
+    "moves": []
+}

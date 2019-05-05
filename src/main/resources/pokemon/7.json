@@ -1,0 +1,12 @@
+{
+    "id": 7,
+    "pokedex_id": "007",
+    "name": "Squirtle",
+    "types": [
+        {
+            "name": "Water"
+        }
+    ],
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+    "moves": []
+}

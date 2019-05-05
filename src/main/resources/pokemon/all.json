@@ -76,5 +76,38 @@
             }
         ],
         "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
+    },
+    {
+        "id": 7,
+        "pokedex_id": "007",
+        "name": "Squirtle",
+        "types": [
+            {
+                "name": "Water"
+            }
+        ],
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
+    },
+    {
+        "id": 8,
+        "pokedex_id": "008",
+        "name": "Wartortle",
+        "types": [
+            {
+                "name": "Water"
+            }
+        ],
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png"
+    },
+    {
+        "id": 9,
+        "pokedex_id": "009",
+        "name": "Blastoise",
+        "types": [
+            {
+                "name": "Water"
+            }
+        ],
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png"
     }
 ]
