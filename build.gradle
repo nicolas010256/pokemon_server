@@ -1,19 +1,11 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.4.RELEASE'
+}
+
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'application'
-
-
-
-buildscript {
-    repositories {
-        jcenter()
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")        
-    }
-}
 
 
 mainClassName = 'pokemon.server.Application'
@@ -32,6 +24,8 @@ repositories {
 }
 
 dependencies {
-    implementation "org.springframework.boot:spring-boot-starter-web"
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile("org.json:json:20180813")
+    compile('mysql:mysql-connector-java:8.0.13')
 }
