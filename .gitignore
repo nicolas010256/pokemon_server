@@ -9,4 +9,4 @@
 # Files
 .project
 .classpath
-/src/main/resources/application.properties
+src\main\resources\application.properties
