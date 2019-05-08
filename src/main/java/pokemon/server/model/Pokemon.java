@@ -19,14 +19,17 @@ public class Pokemon {
 
     @Id
     @Column(name = "ID")
-    private long id;
+    private Integer id;
 
     @JsonProperty("pokedex_id")
     @Column(name = "POKEDEX_ID")
-    private long pokedexId;
+    private Integer pokedexId;
 
     @Column(name = "NAME")
     private String name;
+
+    @Column(name = "IS_DEFAULT")
+    private Boolean isDefault;
 
     @JsonProperty("types")
     @ManyToMany
@@ -40,21 +43,35 @@ public class Pokemon {
     /**
      * @return the id
      */
-    public long getId() {
+    public Integer getId() {
         return id;
+    }
+
+    /**
+     * @return the isDefault
+     */
+    public Boolean getIsDefault() {
+        return isDefault;
+    }
+
+    /**
+     * @param isDefault the isDefault to set
+     */
+    public void setIsDefault(Boolean isDefault) {
+        this.isDefault = isDefault;
     }
 
     /**
      * @return the pokedexId
      */
-    public long getPokedexId() {
+    public Integer getPokedexId() {
         return pokedexId;
     }
 
     /**
      * @param pokedexId the pokedexId to set
      */
-    public void setPokedexId(long pokedexId) {
+    public void setPokedexId(Integer pokedexId) {
         this.pokedexId = pokedexId;
     }
 
@@ -103,7 +120,7 @@ public class Pokemon {
     /**
      * @param id the id to set
      */
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 }

@@ -9,4 +9,8 @@
 # Files
 .project
 .classpath
+<<<<<<< HEAD
 src\main\resources\application.properties
+=======
+src/main/resources/application.properties
+>>>>>>> dev
