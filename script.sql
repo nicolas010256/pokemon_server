@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS `POKEMON` (
     `ID` INT NOT NULL,
     `POKEDEX_ID` INT,
     `NAME` VARCHAR(30) NOT NULL,
+    `IS_DEFAULT` BOOLEAN,
     `SPRITE` VARCHAR(100)
 );
 
@@ -31,12 +32,14 @@ ALTER TABLE `POKEMON_TYPE` ADD CONSTRAINT `PK_POKEMON_TYPE` PRIMARY KEY (`POKEMO
 ALTER TABLE `POKEMON_TYPE` ADD CONSTRAINT `FK_POKEMON_TYPE_POKEMON` FOREIGN KEY (`POKEMON_ID`) REFERENCES `POKEMON`(`ID`);
 ALTER TABLE `POKEMON_TYPE` ADD CONSTRAINT `FK_POKEMON_TYPE_TYPE` FOREIGN KEY (`TYPE_ID`) REFERENCES `TYPE`(`ID`);
 
-select * from `pokemon`;
-select * from `type`;
-select * from `pokemon_type`;
+-- select * from `pokemon`;
+-- select * from `type`;
+-- select * from `pokemon_type`;
 
 -- delete from `pokemon_type`;
 -- delete from `type`;
 -- delete from `pokemon`;
 
 -- set global time_zone = '-3:00';
+
+-- SELECT * FROM `POKEMON` WHERE `NAME` LIKE '%Lycanroc%';
