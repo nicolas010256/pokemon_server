@@ -6,20 +6,38 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TYPE")
-public class Type {
+@Table(name = "ABILITY")
+public class Ability {
+
     @Id
     @Column(name = "ID")
     private Integer id;
 
-    @Column(name = "NAME")
+    @Column(name= "NAME")
     private String name;
+
+    @Column(name = "DESCRIPTION")
+    private String description;
 
     /**
      * @return the id
      */
     public Integer getId() {
         return id;
+    }
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**
@@ -42,5 +60,4 @@ public class Type {
     public void setId(Integer id) {
         this.id = id;
     }
-
 }

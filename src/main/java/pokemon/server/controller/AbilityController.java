@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import pokemon.server.model.Move;
-import pokemon.server.repository.MoveRepository;
+import pokemon.server.model.Ability;
+import pokemon.server.repository.AbilityRepository;
 
 @RestController
-public class MoveController {
+@CrossOrigin
+public class AbilityController {
 
     @Autowired
-    private MoveRepository moveRepository;
+    private AbilityRepository abilityRepository;
 
-    @CrossOrigin
-    @GetMapping("/move/{id}")
-    public Optional<Move> getMove(@PathVariable("id") int id) {
-        return moveRepository.findById(id);
+    @GetMapping("/ability/{id}")
+    public Optional<Ability> getAbility(@PathVariable("id") int id) {
+        return abilityRepository.findById(id);
     }
 }
