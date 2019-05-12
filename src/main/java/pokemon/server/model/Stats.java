@@ -107,14 +107,4 @@ public class Stats {
     public void setHp(Integer hp) {
         this.hp = hp;
     }
-
-    @Override
-    public String toString() {
-        return "HP: "+ hp + "\n" +
-                "ATK: " + atk + "\n" +
-                "DEF: " + def + "\n" +
-                "SP ATK: " + spAtk + "\n" +
-                "SP DEF: " + spDef+ "\n" +
-                "SPEED: " + speed;
-    }
 }

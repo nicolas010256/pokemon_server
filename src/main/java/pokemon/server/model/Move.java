@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 @Entity
 @Table(name = "MOVE")
@@ -32,6 +34,7 @@ public class Move {
     private Integer pp;
 
     @Column(name = "DAMAGE_CATEGORY")
+    @JsonProperty("damage_category")
     private String damageCategory;
 
     @ManyToOne

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -37,10 +38,10 @@ public class Pokemon {
         @JoinColumn(name = "ABILITY_ID")})
     private List<Ability> abilities = new ArrayList<Ability>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "POKEMON_TYPE", joinColumns = {@JoinColumn(name = "POKEMON_ID")}, inverseJoinColumns = {
         @JoinColumn(name = "TYPE_ID")})
-    private List<Type> type = new ArrayList<Type>();
+    private List<Type> types = new ArrayList<Type>();
 
     @ManyToMany
     @JoinTable(name = "POKEMON_MOVE", joinColumns = {@JoinColumn(name = "POKEMON_ID")}, inverseJoinColumns = {
@@ -144,15 +145,15 @@ public class Pokemon {
     /**
      * @return the type
      */
-    public List<Type> getType() {
-        return type;
+    public List<Type> getTypes() {
+        return types;
     }
 
     /**
      * @param type the type to set
      */
-    public void setType(List<Type> type) {
-        this.type = type;
+    public void setTypes(List<Type> type) {
+        this.types = type;
     }
 
     /**
