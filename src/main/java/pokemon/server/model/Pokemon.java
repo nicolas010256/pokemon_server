@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "POKEMON")
@@ -21,7 +21,6 @@ public class Pokemon {
     @Column(name = "ID")
     private Integer id;
 
-    @JsonProperty("pokedex_id")
     @Column(name = "POKEDEX_ID")
     private Integer pokedexId;
 
@@ -29,13 +28,25 @@ public class Pokemon {
     private String name;
 
     @Column(name = "IS_DEFAULT")
-    private Boolean isDefault;
+    private boolean isDefault;
 
-    @JsonProperty("types")
+    @Embedded
+    private Stats stats;
+
     @ManyToMany
-    @JoinTable(name = "POKEMON_TYPE", joinColumns = { @JoinColumn(name = "POKEMON_ID") }, inverseJoinColumns = {
-            @JoinColumn(name = "TYPE_ID") })
-    private List<Type> type = new ArrayList<Type>();
+    @JoinTable(name = "POKEMON_ABILITY", joinColumns = {@JoinColumn(name = "POKEMON_ID")}, inverseJoinColumns = {
+        @JoinColumn(name = "ABILITY_ID")})
+    private List<Ability> abilities = new ArrayList<Ability>();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "POKEMON_TYPE", joinColumns = {@JoinColumn(name = "POKEMON_ID")}, inverseJoinColumns = {
+        @JoinColumn(name = "TYPE_ID")})
+    private List<Type> types = new ArrayList<Type>();
+
+    @ManyToMany
+    @JoinTable(name = "POKEMON_MOVE", joinColumns = {@JoinColumn(name = "POKEMON_ID")}, inverseJoinColumns = {
+        @JoinColumn(name = "MOVE_ID")})
+    private List<Move> moves = new ArrayList<Move>();
 
     @Column(name = "SPRITE")
     private String sprite;
@@ -48,16 +59,58 @@ public class Pokemon {
     }
 
     /**
+     * @return the moves
+     */
+    public List<Move> getMoves() {
+        return moves;
+    }
+
+    /**
+     * @param moves the moves to set
+     */
+    public void setMoves(List<Move> moves) {
+        this.moves = moves;
+    }
+
+    /**
+     * @return the abilities
+     */
+    public List<Ability> getAbilities() {
+        return abilities;
+    }
+
+    /**
+     * @param abilities the abilities to set
+     */
+    public void setAbilities(List<Ability> abilities) {
+        this.abilities = abilities;
+    }
+
+    /**
+     * @return the stats
+     */
+    public Stats getStats() {
+        return stats;
+    }
+
+    /**
+     * @param stats the stats to set
+     */
+    public void setStats(Stats stats) {
+        this.stats = stats;
+    }
+
+    /**
      * @return the isDefault
      */
-    public Boolean getIsDefault() {
+    public boolean isDefault() {
         return isDefault;
     }
 
     /**
      * @param isDefault the isDefault to set
      */
-    public void setIsDefault(Boolean isDefault) {
+    public void setDefault(boolean isDefault) {
         this.isDefault = isDefault;
     }
 
@@ -92,15 +145,15 @@ public class Pokemon {
     /**
      * @return the type
      */
-    public List<Type> getType() {
-        return type;
+    public List<Type> getTypes() {
+        return types;
     }
 
     /**
      * @param type the type to set
      */
-    public void setType(List<Type> type) {
-        this.type = type;
+    public void setTypes(List<Type> type) {
+        this.types = type;
     }
 
     /**
