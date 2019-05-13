@@ -1,25 +1,31 @@
 package pokemon.server.controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pokemon.server.model.Ability;
-import pokemon.server.repository.AbilityRepository;
+import pokemon.server.persistence.model.Ability;
+import pokemon.server.service.IAbilityService;
 
-@RestController
 @CrossOrigin
+@RestController
+@RequestMapping("/ability")
 public class AbilityController {
 
     @Autowired
-    private AbilityRepository abilityRepository;
+    private IAbilityService service;
 
-    @GetMapping("/ability/{id}")
-    public Optional<Ability> getAbility(@PathVariable("id") int id) {
-        return abilityRepository.findById(id);
+    @GetMapping("")
+    public void index() {
+        
+    }
+
+
+    @GetMapping("/{id}")
+    public Ability getAbility(@PathVariable("id") int id) {
+        return service.findById(id);
     }
 }

@@ -1,4 +1,4 @@
-package pokemon.server.model;
+package pokemon.server.persistence.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
