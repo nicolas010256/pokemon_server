@@ -1,25 +1,26 @@
 package pokemon.server.controller;
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pokemon.server.model.Move;
-import pokemon.server.repository.MoveRepository;
+import pokemon.server.persistence.model.Move;
+import pokemon.server.service.IMoveService;
 
+@CrossOrigin
 @RestController
+@RequestMapping("/move")
 public class MoveController {
 
     @Autowired
-    private MoveRepository moveRepository;
+    private IMoveService service;
 
-    @CrossOrigin
-    @GetMapping("/move/{id}")
-    public Optional<Move> getMove(@PathVariable("id") int id) {
-        return moveRepository.findById(id);
+    @GetMapping("/{id}")
+    public Move getMove(@PathVariable("id") int id) {
+        return service.findById(id);
     }
 }

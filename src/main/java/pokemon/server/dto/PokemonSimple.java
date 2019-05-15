@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.springframework.beans.factory.annotation.Value;
 
-import pokemon.server.model.Type;
-
 public interface PokemonSimple {
     
     @Value("#{target.id}")
@@ -17,7 +15,12 @@ public interface PokemonSimple {
     Integer getPokedexId();
 
     String getName();
-    List<Type> getTypes();
+    List<TypeSumary> getTypes();
     String getSprite();
+
+    interface TypeSumary {
+        Integer getId();
+        String getName();
+    }
     
 }

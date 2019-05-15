@@ -1,4 +1,4 @@
-package pokemon.server.model;
+package pokemon.server.persistence.model;
 
 import java.util.ArrayList;
 import java.util.List;
