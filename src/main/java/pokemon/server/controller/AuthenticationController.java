@@ -1,43 +1,44 @@
 package pokemon.server.controller;
 
-import java.io.UnsupportedEncodingException;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import pokemon.server.persistence.dao.UserRepository;
-import pokemon.server.persistence.model.User;
+import pokemon.server.dto.AccountCredentials;
+import pokemon.server.exception.AuthenticationTokenException;
+import pokemon.server.exception.ResourceNotFoundException;
 import pokemon.server.service.AuthenticationService;
+import pokemon.server.service.UserService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/authentication")
+@RequestMapping("/auth")
 public class AuthenticationController {
 
   @Autowired
-  private AuthenticationService service;
+  private AuthenticationService authService;
 
   @Autowired
-  private UserRepository repository;
+  private UserService userService;
 
   @PostMapping("")
-  public String authenticate(@RequestParam("username") String username, @RequestParam("password") String password) {
+  public void authenticate(@RequestBody AccountCredentials credentials, HttpServletResponse res) {
 
-    User user = repository.findByUsernameAndPassword(username, password);
-    if (user != null) {
+    if (userService.verifyUser(credentials)) {
       try {
-        return service.addAuthentication(username);
-      } catch (IllegalArgumentException | UnsupportedEncodingException e) {
+        String token = authService.addAuthentication(credentials.getUsername());
+        res.setHeader("Authorization", "Bearer " + token);
+      } catch (AuthenticationTokenException e) {
         e.printStackTrace();
       }
+    } else {
+      throw new ResourceNotFoundException();
     }
-
-    return "Se fudeu";
-  } 
-
-
+  }
 }

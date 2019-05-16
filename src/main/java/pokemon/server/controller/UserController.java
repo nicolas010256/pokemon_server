@@ -5,10 +5,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import pokemon.server.dto.AccountCredentials;
+import pokemon.server.dto.SignUpInfo;
 import pokemon.server.service.IUserService;
 
 @CrossOrigin
@@ -20,13 +19,8 @@ public class UserController {
     private IUserService service;
 
     @PostMapping("")
-    
-    public void registerNewUser(@RequestBody @RequestParam("username") String username,
-            @RequestBody @RequestParam("password") String password,
-            @RequestBody @RequestParam("email") String email) {
+    public void registerNewUser(@RequestBody SignUpInfo info) {
         
-        AccountCredentials credentials = new AccountCredentials(username, password, email);
-        
-        service.registerNewUserAccount(credentials);        
+        service.registerNewUserAccount(info);        
     }
 }

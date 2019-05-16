@@ -90,6 +90,8 @@ ALTER TABLE `POKEMON_MOVE` ADD CONSTRAINT `FK_POKEMON_MOVE_MOVE` FOREIGN KEY (`M
 -- select * from `pokemon`;
 -- select * from `type`;
 -- select * from `pokemon_type`;
+-- select * from `user`;
+
 
 -- delete from `pokemon_type`;
 -- delete from `type`;
