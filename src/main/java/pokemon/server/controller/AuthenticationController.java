@@ -7,12 +7,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import pokemon.server.dto.AccountCredentials;
 import pokemon.server.exception.AuthenticationTokenException;
-import pokemon.server.exception.ResourceNotFoundException;
 import pokemon.server.service.AuthenticationService;
 import pokemon.server.service.UserService;
 
@@ -37,8 +35,6 @@ public class AuthenticationController {
       } catch (AuthenticationTokenException e) {
         e.printStackTrace();
       }
-    } else {
-      throw new ResourceNotFoundException();
-    }
+    } 
   }
 }

@@ -2,6 +2,8 @@ package pokemon.server.service;
 
 import java.io.UnsupportedEncodingException;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -20,7 +22,7 @@ public class AuthenticationService implements IAuthenticationService {
 
   public String addAuthentication(String username) throws AuthenticationTokenException {
     try {
-      Algorithm algorithm = Algorithm.HMAC256(SECRET);
+      Algorithm algorithm = Algorithm.HMAC512(SECRET);
       String token = JWT.create()
           .withSubject(username)
           .withIssuer(ISSUER)
@@ -33,8 +35,9 @@ public class AuthenticationService implements IAuthenticationService {
   }
 
   @Override
-  public String getAuthentication(String token) throws AuthenticationTokenException {
+  public String getAuthentication(HttpServletRequest request) throws AuthenticationTokenException {
     try {
+      String token = request.getHeader("Authorization").replace("Bearer", "").trim();;
       Algorithm algorithm = Algorithm.HMAC512(SECRET);
       JWTVerifier verifier = JWT.require(algorithm)
         .withIssuer(ISSUER)
@@ -43,6 +46,7 @@ public class AuthenticationService implements IAuthenticationService {
       String subject = jwt.getSubject();
       return subject;
     } catch (IllegalArgumentException | UnsupportedEncodingException | JWTVerificationException e) {
+      e.printStackTrace();
       throw new AuthenticationTokenException("Could not decode Json Web Token.");
     }
   }
