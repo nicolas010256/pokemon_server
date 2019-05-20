@@ -14,7 +14,6 @@ import pokemon.server.exception.AuthenticationTokenException;
 import pokemon.server.service.AuthenticationService;
 import pokemon.server.service.UserService;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationController {
@@ -25,13 +24,16 @@ public class AuthenticationController {
   @Autowired
   private UserService userService;
 
+  @CrossOrigin
   @PostMapping("")
   public void authenticate(@RequestBody AccountCredentials credentials, HttpServletResponse res) {
 
     if (userService.verifyUser(credentials)) {
       try {
         String token = authService.addAuthentication(credentials.getUsername());
+        //res.setHeader("Access-Control-Allow-Origin", "*");
         res.setHeader("Authorization", "Bearer " + token);
+        res.setHeader("Access-Control-Expose-Headers", "Authorization");
       } catch (AuthenticationTokenException e) {
         e.printStackTrace();
       }

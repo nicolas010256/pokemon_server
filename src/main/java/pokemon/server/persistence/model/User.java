@@ -1,8 +1,12 @@
 package pokemon.server.persistence.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +24,10 @@ public class User {
 
     @Column(name = "ENABLED")
     private Boolean enabled;
+
+    @OneToMany
+    @JoinColumn(name = "username")
+    private List<Team> teams;
 
     /**
      * @return the username
@@ -75,6 +83,14 @@ public class User {
      */
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<Team> teams) {
+        this.teams = teams;
     }
 
 }

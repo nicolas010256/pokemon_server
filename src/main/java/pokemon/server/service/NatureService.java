@@ -5,22 +5,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pokemon.server.persistence.dao.ItemRepository;
-import pokemon.server.persistence.model.Item;
+import pokemon.server.persistence.dao.NatureRepository;
+import pokemon.server.persistence.model.Nature;
 
 @Service
-public class ItemService implements IItemService {
+public class NatureService implements INatureService {
 
     @Autowired
-    private ItemRepository repository;
+    private NatureRepository repository;
 
     @Override
-    public List<Item> findAll() {
+    public List<Nature> findAll() {
         return repository.findAll();
     }
 
     @Override
-    public Item findById(Integer id) {
+    public Nature findById(Integer id) {
         return repository.findById(id).get();
     }
 
