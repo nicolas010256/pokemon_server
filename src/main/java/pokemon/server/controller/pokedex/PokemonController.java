@@ -1,4 +1,4 @@
-package pokemon.server.controller;
+package pokemon.server.controller.pokedex;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;

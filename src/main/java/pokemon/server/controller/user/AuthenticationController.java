@@ -1,4 +1,4 @@
-package pokemon.server.controller;
+package pokemon.server.controller.user;
 
 import javax.servlet.http.HttpServletResponse;
 

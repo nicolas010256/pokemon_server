@@ -149,6 +149,7 @@ ALTER TABLE `POKEMON_TEAM_MOVE` ADD CONSTRAINT `FK_POKEMON_TEAM_MOVE_MOVE` FOREI
 -- select * from `type`;
 -- select * from `pokemon_type`;
 -- select * from `user`;
+-- select * from `team`;
 
 
 -- delete from `pokemon_type`;

@@ -1,4 +1,6 @@
-package pokemon.server.controller;
+package pokemon.server.controller.pokedex;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -7,25 +9,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pokemon.server.persistence.model.Ability;
-import pokemon.server.service.IAbilityService;
+import pokemon.server.persistence.model.Item;
+import pokemon.server.service.IItemService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/ability")
-public class AbilityController {
+@RequestMapping("/item")
+public class ItemController {
 
     @Autowired
-    private IAbilityService service;
-
+    private IItemService service;
+    
     @GetMapping("")
-    public void index() {
-        
+    public List<Item> getAllItems() {
+        return service.findAll();
     }
 
-
     @GetMapping("/{id}")
-    public Ability getAbility(@PathVariable("id") int id) {
+    public Item getItemById(@PathVariable("id") int id) {
         return service.findById(id);
     }
 }

@@ -1,6 +1,4 @@
-package pokemon.server.controller;
-
-import java.util.List;
+package pokemon.server.controller.pokedex;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,24 +7,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pokemon.server.persistence.model.Nature;
-import pokemon.server.service.INatureService;
+import pokemon.server.persistence.model.Ability;
+import pokemon.server.service.IAbilityService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/nature")
-public class NatureController {
+@RequestMapping("/ability")
+public class AbilityController {
 
     @Autowired
-    private INatureService service;
+    private IAbilityService service;
 
-    @GetMapping
-    public List<Nature> getAllNatures() {
-        return service.findAll();
+    @GetMapping("")
+    public void index() {
+        
     }
 
+
     @GetMapping("/{id}")
-    public Nature getById(@PathVariable("id") int id) {
+    public Ability getAbility(@PathVariable("id") int id) {
         return service.findById(id);
     }
 }
