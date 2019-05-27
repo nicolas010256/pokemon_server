@@ -1,6 +1,7 @@
 package pokemon.server.persistence.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.AttributeOverride;
@@ -17,7 +18,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TEAM_POKEMON")
+@Table(name = "POKEMON_TEAM")
 public class TeamPokemon {
     @EmbeddedId
     private Id id = new Id();
@@ -37,11 +38,15 @@ public class TeamPokemon {
     @JoinColumn(name = "ITEM_ID", referencedColumnName = "ID")
     private Item item;
 
+    @OneToOne
+    @JoinColumn(name = "NATURE_ID", referencedColumnName = "ID")
+    private Nature nature;
+
     @ManyToMany
-    @JoinTable(name = "POKEMON_TAEM_MOVE", joinColumns = {
-        @JoinColumn(name = "POKEMON_TEAM_ID"), @JoinColumn(name = "USERNAME"), @JoinColumn(name = "TEAM_ID")},
+    @JoinTable(name = "POKEMON_TEAM_MOVE", joinColumns = {
+        @JoinColumn(name = "TEAM_ID"), @JoinColumn(name = "POKEMON_TEAM_ID"), @JoinColumn(name = "USERNAME")},
         inverseJoinColumns = {@JoinColumn(name = "MOVE_ID")})
-    private List<Move> moves;
+    private List<Move> moves = new ArrayList<Move>();
 
     @AttributeOverrides({
         @AttributeOverride(name = "hp", column = @Column(name = "HP_IV")),
@@ -98,6 +103,78 @@ public class TeamPokemon {
             return username;
         }
 
+    }
+
+    public Id getId() {
+        return id;
+    }
+
+    public void setId(Id id) {
+        this.id = id;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public Pokemon getPokemon() {
+        return pokemon;
+    }
+
+    public void setPokemon(Pokemon pokemon) {
+        this.pokemon = pokemon;
+    }
+
+    public Ability getAbility() {
+        return ability;
+    }
+
+    public void setAbility(Ability ability) {
+        this.ability = ability;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public List<Move> getMoves() {
+        return moves;
+    }
+
+    public void setMoves(List<Move> moves) {
+        this.moves = moves;
+    }
+
+    public Stats getIvs() {
+        return ivs;
+    }
+
+    public void setIvs(Stats ivs) {
+        this.ivs = ivs;
+    }
+
+    public Stats getEvs() {
+        return evs;
+    }
+
+    public void setEvs(Stats evs) {
+        this.evs = evs;
+    }
+
+    public Nature getNature() {
+        return nature;
+    }
+
+    public void setNature(Nature nature) {
+        this.nature = nature;
     }
     
 }

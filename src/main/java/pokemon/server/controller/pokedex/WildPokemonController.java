@@ -17,7 +17,7 @@ import pokemon.server.service.IPokemonService;
 @CrossOrigin
 @RestController
 @RequestMapping("/pokemon")
-public class PokemonController {
+public class WildPokemonController {
     
     @Autowired
     private IPokemonService service;
