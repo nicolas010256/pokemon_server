@@ -38,7 +38,7 @@ public class Pokemon {
         @JoinColumn(name = "ABILITY_ID")})
     private List<Ability> abilities = new ArrayList<Ability>();
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "POKEMON_TYPE", joinColumns = {@JoinColumn(name = "POKEMON_ID")}, inverseJoinColumns = {
         @JoinColumn(name = "TYPE_ID")})
     private List<Type> types = new ArrayList<Type>();
