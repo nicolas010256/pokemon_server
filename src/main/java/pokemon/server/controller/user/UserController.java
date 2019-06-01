@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import jdk.jshell.spi.ExecutionControl.UserException;
 import pokemon.server.dto.SignUpInfo;
 import pokemon.server.service.IUserService;
 
@@ -20,7 +19,7 @@ public class UserController {
     private IUserService service;
 
     @PostMapping("")
-    public void registerNewUser(@RequestBody SignUpInfo info) throws UserException {
+    public void registerNewUser(@RequestBody SignUpInfo info) {
         service.registerNewUserAccount(info);
     }
 
