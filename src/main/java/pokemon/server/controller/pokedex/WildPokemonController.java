@@ -1,7 +1,10 @@
 package pokemon.server.controller.pokedex;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -71,7 +74,14 @@ public class WildPokemonController {
     }
 
     @GetMapping("/{id}")
-    public WildPokemonDetailed getPokemon(@PathVariable("id") int id) {
+    public WildPokemonDetailed getPokemon(@PathVariable("id") int id, HttpServletRequest request) {
+
+        Enumeration<String> headersNames = request.getHeaderNames();
+
+        while (headersNames.hasMoreElements()) {
+            String name = headersNames.nextElement();
+            System.out.println(name + ": " + request.getHeader(name));
+        }
 
         WildPokemon wildPokemon = service.findById(id);
 
