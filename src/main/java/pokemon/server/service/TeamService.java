@@ -1,11 +1,11 @@
 package pokemon.server.service;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import pokemon.server.dto.TeamInfo;
 import pokemon.server.persistence.dao.TeamRepository;
 import pokemon.server.persistence.model.Team;
 import pokemon.server.persistence.model.Team.Id;
@@ -22,8 +22,8 @@ public class TeamService implements ITeamService {
     }
 
     @Override
-    public List<TeamInfo> findByUsername(String username) {
-        return repository.findByUsername(username);
+    public Page<Team> findByUsername(String username, int page, int size) {
+        return repository.findByUsername(username, PageRequest.of(page, size));
     }
 
     @Override
@@ -39,10 +39,5 @@ public class TeamService implements ITeamService {
     @Override
     public int nextFreeId() {
         return repository.nextFreeId();
-    }
-
-    @Override
-    public TeamInfo findInfoById(Id id) {
-        return repository.findInfoById(id);
     }
 }

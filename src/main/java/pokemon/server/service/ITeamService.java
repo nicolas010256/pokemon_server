@@ -1,18 +1,15 @@
 package pokemon.server.service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
 
-import pokemon.server.dto.TeamInfo;
 import pokemon.server.persistence.model.Team;
 
 public interface ITeamService {
     void save(Team team);
 
-    List<TeamInfo> findByUsername(String username);
+    Page<Team> findByUsername(String username, int page, int size);
 
     Team findById(Team.Id id);
-
-    TeamInfo findInfoById(Team.Id id);
 
     void delete(Team.Id id);
 
