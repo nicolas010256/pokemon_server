@@ -4,11 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,6 +24,10 @@ public class Team {
     private String name;
 
     @OneToMany
+    @JoinColumns({
+        @JoinColumn(name = "TEAM_ID"),
+        @JoinColumn(name = "USERNAME")
+    })
     private List<Pokemon> pokemon = new ArrayList<Pokemon>();
 
     @Embeddable
