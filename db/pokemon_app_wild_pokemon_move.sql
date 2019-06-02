@@ -14,23 +14,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `wild_pokemon_move`
---
-
-DROP TABLE IF EXISTS wild_pokemon_move;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE wild_pokemon_move (
-  wILD_POKEMON_ID int(11) NOT NULL,
-  MOVE_ID int(11) NOT NULL,
-  PRIMARY KEY (wILD_POKEMON_ID,MOVE_ID),
-  KEY FK_WILD_POKEMON_MOVE_MOVE (MOVE_ID),
-  CONSTRAINT FK_WILD_POKEMON_MOVE_MOVE FOREIGN KEY (MOVE_ID) REFERENCES move (ID),
-  CONSTRAINT FK_WILD_POKEMON_MOVE_POKEMON FOREIGN KEY (wILD_POKEMON_ID) REFERENCES wild_pokemon (ID)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `wild_pokemon_move`
 --
 

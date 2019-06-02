@@ -14,29 +14,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `wild_pokemon`
---
-
-DROP TABLE IF EXISTS wild_pokemon;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE wild_pokemon (
-  ID int(11) NOT NULL,
-  POKEDEX_ID int(11) DEFAULT NULL,
-  `NAME` varchar(30) NOT NULL,
-  IS_DEFAULT tinyint(1) DEFAULT NULL,
-  HP int(3) DEFAULT NULL,
-  ATK int(3) DEFAULT NULL,
-  DEF int(3) DEFAULT NULL,
-  SP_ATK int(3) DEFAULT NULL,
-  SP_DEF int(3) DEFAULT NULL,
-  SPEED int(3) DEFAULT NULL,
-  SPRITE varchar(100) DEFAULT NULL,
-  PRIMARY KEY (ID)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `wild_pokemon`
 --
 

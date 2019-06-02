@@ -14,23 +14,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `wild_pokemon_type`
---
-
-DROP TABLE IF EXISTS wild_pokemon_type;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE wild_pokemon_type (
-  WILD_POKEMON_ID int(11) NOT NULL,
-  TYPE_ID int(11) NOT NULL,
-  PRIMARY KEY (WILD_POKEMON_ID,TYPE_ID),
-  KEY FK_WILD_POKEMON_TYPE_TYPE (TYPE_ID),
-  CONSTRAINT FK_WILD_POKEMON_TYPE_POKEMON FOREIGN KEY (WILD_POKEMON_ID) REFERENCES wild_pokemon (ID),
-  CONSTRAINT FK_WILD_POKEMON_TYPE_TYPE FOREIGN KEY (TYPE_ID) REFERENCES type (ID)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `wild_pokemon_type`
 --
 

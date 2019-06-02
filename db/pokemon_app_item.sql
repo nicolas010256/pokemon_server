@@ -14,22 +14,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `item`
---
-
-DROP TABLE IF EXISTS item;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE item (
-  ID int(11) NOT NULL,
-  `NAME` varchar(50) DEFAULT NULL,
-  `DESCRIPTION` varchar(250) DEFAULT NULL,
-  SPRITE varchar(200) DEFAULT NULL,
-  PRIMARY KEY (ID)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `item`
 --
 
