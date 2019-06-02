@@ -35,12 +35,13 @@ public class TeamController {
     
     @CrossOrigin
     @PostMapping()
-    public void createTeam(@RequestAttribute("username") String username, @RequestBody TeamInfo info) {
+    public int createTeam(@RequestAttribute("username") String username, @RequestBody TeamInfo info) {
         Team team = new Team();
         Team.Id id = new Team.Id(service.nextFreeId(), username);
         team.setId(id);
         team.setName(info.getName());
         service.save(team);
+        return id.getTeamId();
     }
 
     @GetMapping()

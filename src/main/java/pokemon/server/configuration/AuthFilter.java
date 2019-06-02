@@ -26,7 +26,7 @@ public class AuthFilter implements Filter {
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         res.setHeader("Access-Control-Max-Age", "3600");
-        res.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization");
+        res.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization, content-type");
 
         if ("OPTIONS".equalsIgnoreCase(req.getMethod())) {
             res.setStatus(HttpServletResponse.SC_OK);
