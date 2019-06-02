@@ -20,7 +20,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import pokemon.server.dto.CustomPage;
 import pokemon.server.dto.TeamBrief;
-import pokemon.server.dto.TeamInfo;
 import pokemon.server.persistence.model.Team;
 import pokemon.server.service.ITeamService;
 import pokemon.server.util.PaginationUtil;
@@ -110,12 +109,12 @@ public class TeamController {
 
     @PutMapping("/{id}")
     public void updateTeam(@RequestAttribute("username") String username, @PathVariable("id") int teamId,
-             @RequestBody TeamInfo info) {
+             @RequestBody String name) {
 
         Team team = new Team();
         Team.Id id = new Team.Id(teamId, username);
         team.setId(id);
-        team.setName(info.getName());
+        team.setName(name);
         service.save(team);
     }
 
