@@ -20,6 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import pokemon.server.dto.CustomPage;
 import pokemon.server.dto.TeamBrief;
+import pokemon.server.dto.TeamInfo;
 import pokemon.server.persistence.model.Team;
 import pokemon.server.service.ITeamService;
 import pokemon.server.util.PaginationUtil;
@@ -34,11 +35,11 @@ public class TeamController {
     
     @CrossOrigin
     @PostMapping()
-    public void createTeam(@RequestAttribute("username") String username, @RequestBody String name) {
+    public void createTeam(@RequestAttribute("username") String username, @RequestBody TeamInfo info) {
         Team team = new Team();
         Team.Id id = new Team.Id(service.nextFreeId(), username);
         team.setId(id);
-        team.setName(name);
+        team.setName(info.getName());
         service.save(team);
     }
 
