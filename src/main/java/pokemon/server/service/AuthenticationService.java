@@ -1,7 +1,6 @@
 package pokemon.server.service;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 
