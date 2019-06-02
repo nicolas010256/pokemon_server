@@ -39,13 +39,13 @@ public class AuthenticationService implements IAuthenticationService {
   public String getAuthentication(HttpServletRequest request) throws AuthenticationTokenException {
     try {
 
-      Enumeration<String> headersNames = request.getHeaderNames();
+      // Enumeration<String> headersNames = request.getHeaderNames();
 
-      while (headersNames.hasMoreElements()) {
-        String name = headersNames.nextElement();
-        System.out.println(name + ": " + request.getHeader(name));
-      }
-
+      // while (headersNames.hasMoreElements()) {
+      //   String name = headersNames.nextElement();
+      //   System.out.println(name + ": " + request.getHeader(name));
+      // }
+      
       String token = request.getHeader("Authorization").replace("Bearer", "").trim();;
       Algorithm algorithm = Algorithm.HMAC512(SECRET);
       JWTVerifier verifier = JWT.require(algorithm)

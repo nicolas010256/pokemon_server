@@ -33,6 +33,7 @@ public class TeamController {
     @Autowired
     private ITeamService service;
     
+    @CrossOrigin
     @PostMapping()
     public void createTeam(@RequestAttribute("username") String username, @RequestBody String name) {
         Team team = new Team();
