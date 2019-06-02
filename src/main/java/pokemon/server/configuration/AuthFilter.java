@@ -21,8 +21,10 @@ public class AuthFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
+
         AuthenticationService service = new AuthenticationService();
         String username = service.getAuthentication((HttpServletRequest) request);
+
 
         if (username != null && !"".equals(username)) {
             request.setAttribute("username", username);

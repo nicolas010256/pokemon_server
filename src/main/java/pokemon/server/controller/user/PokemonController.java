@@ -24,8 +24,8 @@ import pokemon.server.persistence.model.Move;
 import pokemon.server.persistence.model.Nature;
 import pokemon.server.persistence.model.Pokemon;
 import pokemon.server.persistence.model.Stats;
-import pokemon.server.persistence.model.TeamPokemon;
-import pokemon.server.service.TeamPokemonService;
+import pokemon.server.persistence.model.WildPokemon;
+import pokemon.server.service.IPokemonService;
 
 @CrossOrigin
 @RestController
@@ -33,20 +33,20 @@ import pokemon.server.service.TeamPokemonService;
 public class PokemonController {
 
     @Autowired
-    private TeamPokemonService service;
+    private IPokemonService service;
 
     @PostMapping()
     public void createPokemon(@RequestAttribute("username") String username, 
             @PathVariable("teamId") int teamId, @RequestBody Poke info) {
         
-        TeamPokemon pokemon = new TeamPokemon();
+        Pokemon pokemon = new Pokemon();
         
-        TeamPokemon.Id id = new TeamPokemon.Id(service.nextFreeId(username, teamId), teamId, username);
+        Pokemon.Id id = new Pokemon.Id(service.nextFreeId(username, teamId), teamId, username);
         pokemon.setId(id);
 
-        Pokemon p = new Pokemon();
+        WildPokemon p = new WildPokemon();
         p.setId(info.getPokemonId());
-        pokemon.setPokemon(p);
+        pokemon.setWildPokemon(p);
 
         pokemon.setNickname(info.getName());
 
@@ -97,7 +97,7 @@ public class PokemonController {
     public PokemonInfo getPokemon(@RequestAttribute("username") String username, 
             @PathVariable("teamId") int teamId, @PathVariable("id") int id) {
 
-        return service.findInfoById(new TeamPokemon.Id(id, teamId, username));
+        return service.findInfoById(new Pokemon.Id(id, teamId, username));
     }
 
     @PutMapping("/{id}")

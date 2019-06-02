@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
 -- Host: localhost    Database: pokemon_app
 -- ------------------------------------------------------
--- Server version	8.0.15
+-- Server version	8.0.16
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,29 +14,24 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `type`
+--
+
+DROP TABLE IF EXISTS type;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `type` (
+  ID int(11) NOT NULL,
+  `NAME` varchar(8) NOT NULL,
+  PRIMARY KEY (ID)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `type`
 --
 
-INSERT INTO type (ID, NAME) VALUES (1,'Normal');
-INSERT INTO type (ID, NAME) VALUES (2,'Fighting');
-INSERT INTO type (ID, NAME) VALUES (3,'Flying');
-INSERT INTO type (ID, NAME) VALUES (4,'Poison');
-INSERT INTO type (ID, NAME) VALUES (5,'Ground');
-INSERT INTO type (ID, NAME) VALUES (6,'Rock');
-INSERT INTO type (ID, NAME) VALUES (7,'Bug');
-INSERT INTO type (ID, NAME) VALUES (8,'Ghost');
-INSERT INTO type (ID, NAME) VALUES (9,'Steel');
-INSERT INTO type (ID, NAME) VALUES (10,'Fire');
-INSERT INTO type (ID, NAME) VALUES (11,'Water');
-INSERT INTO type (ID, NAME) VALUES (12,'Grass');
-INSERT INTO type (ID, NAME) VALUES (13,'Electric');
-INSERT INTO type (ID, NAME) VALUES (14,'Psychic');
-INSERT INTO type (ID, NAME) VALUES (15,'Ice');
-INSERT INTO type (ID, NAME) VALUES (16,'Dragon');
-INSERT INTO type (ID, NAME) VALUES (17,'Dark');
-INSERT INTO type (ID, NAME) VALUES (18,'Fairy');
-INSERT INTO type (ID, NAME) VALUES (10001,'Unknown');
-INSERT INTO type (ID, NAME) VALUES (10002,'Shadow');
+INSERT INTO type (ID, NAME) VALUES (1,'Normal'),(2,'Fighting'),(3,'Flying'),(4,'Poison'),(5,'Ground'),(6,'Rock'),(7,'Bug'),(8,'Ghost'),(9,'Steel'),(10,'Fire'),(11,'Water'),(12,'Grass'),(13,'Electric'),(14,'Psychic'),(15,'Ice'),(16,'Dragon'),(17,'Dark'),(18,'Fairy'),(10001,'Unknown'),(10002,'Shadow');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
@@ -46,4 +41,4 @@ INSERT INTO type (ID, NAME) VALUES (10002,'Shadow');
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-18 20:47:46
+-- Dump completed

@@ -1,11 +1,12 @@
 package pokemon.server.service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 import pokemon.server.persistence.model.Item;
 
 public interface IItemService {
-    List<Item> findAll();
+    
+    Page<Item> findAll(int page, int size);
 
     Item findById(Integer id);
 }

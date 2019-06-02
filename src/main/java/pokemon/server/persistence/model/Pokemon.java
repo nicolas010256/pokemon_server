@@ -1,179 +1,180 @@
 package pokemon.server.persistence.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "POKEMON")
 public class Pokemon {
+    @EmbeddedId
+    private Id id = new Id();
 
-    @Id
-    @Column(name = "ID")
-    private Integer id;
+    @Column(name = "NICKNAME")
+    private String nickname;
 
-    @Column(name = "POKEDEX_ID")
-    private Integer pokedexId;
+    @OneToOne
+    @JoinColumn(name = "WILD_POKEMON_ID", referencedColumnName = "ID")
+    private WildPokemon wildPokemon;
 
-    @Column(name = "NAME")
-    private String name;
+    @OneToOne
+    @JoinColumn(name = "ABILITY_ID", referencedColumnName = "ID")
+    private Ability ability;
 
-    @Column(name = "IS_DEFAULT")
-    private boolean isDefault;
+    @OneToOne
+    @JoinColumn(name = "ITEM_ID", referencedColumnName = "ID")
+    private Item item;
 
-    @Embedded
-    private Stats stats;
-
-    @ManyToMany
-    @JoinTable(name = "POKEMON_ABILITY", joinColumns = {@JoinColumn(name = "POKEMON_ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "ABILITY_ID")})
-    private List<Ability> abilities = new ArrayList<Ability>();
-
-    @ManyToMany
-    @JoinTable(name = "POKEMON_TYPE", joinColumns = {@JoinColumn(name = "POKEMON_ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "TYPE_ID")})
-    private List<Type> types = new ArrayList<Type>();
+    @OneToOne
+    @JoinColumn(name = "NATURE_ID", referencedColumnName = "ID")
+    private Nature nature;
 
     @ManyToMany
-    @JoinTable(name = "POKEMON_MOVE", joinColumns = {@JoinColumn(name = "POKEMON_ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "MOVE_ID")})
+    @JoinTable(name = "POKEMON_MOVE", joinColumns = {
+        @JoinColumn(name = "TEAM_ID"), @JoinColumn(name = "POKEMON_ID"), @JoinColumn(name = "USERNAME")},
+        inverseJoinColumns = {@JoinColumn(name = "MOVE_ID")})
     private List<Move> moves = new ArrayList<Move>();
 
-    @Column(name = "SPRITE")
-    private String sprite;
+    @AttributeOverrides({
+        @AttributeOverride(name = "hp", column = @Column(name = "HP_IV")),
+        @AttributeOverride(name = "atk", column = @Column(name = "ATK_IV")),
+        @AttributeOverride(name = "def", column = @Column(name = "DEF_IV")),
+        @AttributeOverride(name = "spAtk", column = @Column(name = "SP_ATK_IV")),
+        @AttributeOverride(name = "spDef", column = @Column(name = "SP_DEF_IV")),
+        @AttributeOverride(name = "speed", column = @Column(name = "SPEED_IV"))
+    })
+    @Embedded
+    private Stats ivs;
+     
+    @AttributeOverrides({
+        @AttributeOverride(name = "hp", column = @Column(name = "HP_EV")),
+        @AttributeOverride(name = "atk", column = @Column(name = "ATK_EV")),
+        @AttributeOverride(name = "def", column = @Column(name = "DEF_EV")),
+        @AttributeOverride(name = "spAtk", column = @Column(name = "SP_ATK_EV")),
+        @AttributeOverride(name = "spDef", column = @Column(name = "SP_DEF_EV")),
+        @AttributeOverride(name = "speed", column = @Column(name = "SPEED_EV"))
+    })
+    @Embedded
+    private Stats evs;
+    
+    @Embeddable
+    public static class Id implements Serializable{
+        private static final long serialVersionUID = 3862812951764185443L;
 
-    /**
-     * @return the id
-     */
-    public Integer getId() {
+        @Column(name = "ID")
+        private Integer teamPokemonId;
+
+        @Column(name = "TEAM_ID")
+        private Integer teamId;
+
+        @Column(name = "USERNAME")
+        private String username;
+
+        public Id() {}
+
+        public Id(Integer teamPokemonId, Integer teamId, String username) {
+            this.teamPokemonId = teamPokemonId;
+            this.teamId = teamId;
+            this.username = username;
+        }
+
+        public Integer getTeamPokemonId() {
+            return teamPokemonId;
+        }
+
+        public Integer getTeamId() {
+            return teamId;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+    }
+
+    public Id getId() {
         return id;
     }
 
-    /**
-     * @return the moves
-     */
+    public void setId(Id id) {
+        this.id = id;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public Ability getAbility() {
+        return ability;
+    }
+
+    public void setAbility(Ability ability) {
+        this.ability = ability;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
     public List<Move> getMoves() {
         return moves;
     }
 
-    /**
-     * @param moves the moves to set
-     */
     public void setMoves(List<Move> moves) {
         this.moves = moves;
     }
 
-    /**
-     * @return the abilities
-     */
-    public List<Ability> getAbilities() {
-        return abilities;
+    public Stats getIvs() {
+        return ivs;
     }
 
-    /**
-     * @param abilities the abilities to set
-     */
-    public void setAbilities(List<Ability> abilities) {
-        this.abilities = abilities;
+    public void setIvs(Stats ivs) {
+        this.ivs = ivs;
     }
 
-    /**
-     * @return the stats
-     */
-    public Stats getStats() {
-        return stats;
+    public Stats getEvs() {
+        return evs;
     }
 
-    /**
-     * @param stats the stats to set
-     */
-    public void setStats(Stats stats) {
-        this.stats = stats;
+    public void setEvs(Stats evs) {
+        this.evs = evs;
     }
 
-    /**
-     * @return the isDefault
-     */
-    public boolean isDefault() {
-        return isDefault;
+    public Nature getNature() {
+        return nature;
     }
 
-    /**
-     * @param isDefault the isDefault to set
-     */
-    public void setDefault(boolean isDefault) {
-        this.isDefault = isDefault;
+    public void setNature(Nature nature) {
+        this.nature = nature;
     }
 
-    /**
-     * @return the pokedexId
-     */
-    public Integer getPokedexId() {
-        return pokedexId;
+    public WildPokemon getWildPokemon() {
+        return wildPokemon;
     }
 
-    /**
-     * @param pokedexId the pokedexId to set
-     */
-    public void setPokedexId(Integer pokedexId) {
-        this.pokedexId = pokedexId;
+    public void setWildPokemon(WildPokemon wildPokemon) {
+        this.wildPokemon = wildPokemon;
     }
-
-    /**
-     * @return the sprite
-     */
-    public String getSprite() {
-        return sprite;
-    }
-
-    /**
-     * @param sprite the sprite to set
-     */
-    public void setSprite(String sprite) {
-        this.sprite = sprite;
-    }
-
-    /**
-     * @return the type
-     */
-    public List<Type> getTypes() {
-        return types;
-    }
-
-    /**
-     * @param type the type to set
-     */
-    public void setTypes(List<Type> type) {
-        this.types = type;
-    }
-
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    
 }

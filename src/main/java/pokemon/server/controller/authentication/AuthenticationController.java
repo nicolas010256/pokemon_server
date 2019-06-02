@@ -1,4 +1,4 @@
-package pokemon.server.controller.user;
+package pokemon.server.controller.authentication;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,13 +25,12 @@ public class AuthenticationController {
   private UserService userService;
 
   @CrossOrigin
-  @PostMapping("")
+  @PostMapping()
   public void authenticate(@RequestBody AccountCredentials credentials, HttpServletResponse res) {
 
     if (userService.verifyUser(credentials)) {
       try {
         String token = authService.addAuthentication(credentials.getUsername());
-        //res.setHeader("Access-Control-Allow-Origin", "*");
         res.setHeader("Authorization", "Bearer " + token);
         res.setHeader("Access-Control-Expose-Headers", "Authorization");
       } catch (AuthenticationTokenException e) {

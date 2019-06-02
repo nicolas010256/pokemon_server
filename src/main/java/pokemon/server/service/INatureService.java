@@ -1,12 +1,12 @@
 package pokemon.server.service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 import pokemon.server.persistence.model.Nature;
 
 public interface INatureService {
 
-    List<Nature> findAll();
+    Page<Nature> findAll(int page, int size);
 
     Nature findById(Integer id);
 }

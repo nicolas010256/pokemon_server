@@ -1,13 +1,13 @@
 package pokemon.server.service;
 
-import org.springframework.data.domain.Pageable;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import pokemon.server.dto.CustomPage;
-import pokemon.server.dto.PokemonDetails;
+import pokemon.server.dto.PokemonInfo;
+import pokemon.server.persistence.model.Pokemon;
 
 public interface IPokemonService {
-    CustomPage findAllPokemonPagination(Pageable pageable, UriComponentsBuilder uriBuilder);
     
-    PokemonDetails findPokemonById(Integer id);
+    void save(Pokemon pokemon);
+
+    int nextFreeId(String username, int teamId);
+
+    PokemonInfo findInfoById(Pokemon.Id id);
 }

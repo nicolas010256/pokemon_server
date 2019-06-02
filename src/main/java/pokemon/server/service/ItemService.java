@@ -1,8 +1,8 @@
 package pokemon.server.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import pokemon.server.persistence.dao.ItemRepository;
@@ -15,8 +15,8 @@ public class ItemService implements IItemService {
     private ItemRepository repository;
 
     @Override
-    public List<Item> findAll() {
-        return repository.findAll();
+    public Page<Item> findAll(int page, int size) {
+        return repository.findAll(PageRequest.of(page, size));
     }
 
     @Override

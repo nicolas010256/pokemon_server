@@ -1,8 +1,8 @@
 package pokemon.server.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import pokemon.server.persistence.dao.NatureRepository;
@@ -15,8 +15,8 @@ public class NatureService implements INatureService {
     private NatureRepository repository;
 
     @Override
-    public List<Nature> findAll() {
-        return repository.findAll();
+    public Page<Nature> findAll(int page, int size) {
+        return repository.findAll(PageRequest.of(page, size));
     }
 
     @Override
