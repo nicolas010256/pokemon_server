@@ -9,6 +9,9 @@ public class WildPokemonBrief {
     @JsonProperty("id")
     private Integer id;
 
+    @JsonProperty("pokedex_id")
+    private Integer pokedexId;
+
     @JsonProperty("name")
     private String name;
 
@@ -49,6 +52,14 @@ public class WildPokemonBrief {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getPokedexId() {
+        return pokedexId;
+    }
+
+    public void setPokedexId(Integer pokedexId) {
+        this.pokedexId = pokedexId;
     }
 
     public String getName() {

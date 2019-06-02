@@ -48,6 +48,7 @@ public class WildPokemonController {
             wildPokemonBrief.setId(wildPokemon.getId());
             wildPokemonBrief.setName(wildPokemon.getName());
             wildPokemonBrief.setSprite(wildPokemon.getSprite());
+            wildPokemonBrief.setPokedexId(wildPokemon.getPokedexId());
             
             List<WildPokemonBrief.Type> types = new ArrayList<WildPokemonBrief.Type>();
 
