@@ -21,18 +21,30 @@ public class AuthFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
+        HttpServletResponse res = (HttpServletResponse) response;
+        HttpServletRequest req = (HttpServletRequest) request;
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        res.setHeader("Access-Control-Max-Age", "3600");
+        res.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization");
 
-        AuthenticationService service = new AuthenticationService();
-        String username = service.getAuthentication((HttpServletRequest) request);
-
-
-        if (username != null && !"".equals(username)) {
-            request.setAttribute("username", username);
-            chain.doFilter(request, response);
+        if ("OPTIONS".equalsIgnoreCase(req.getMethod())) {
+            res.setStatus(HttpServletResponse.SC_OK);
         } else {
-            ((HttpServletResponse) response).sendError(401);
+            AuthenticationService service = new AuthenticationService();
+            String username = service.getAuthentication((HttpServletRequest) request);
+
+
+            if (username != null && !"".equals(username)) {
+                request.setAttribute("username", username);
+                chain.doFilter(request, response);
+            } else {
+                ((HttpServletResponse) response).sendError(401);
+            }
+
         }
 
+        
     }
 
 }
