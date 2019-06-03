@@ -1,6 +1,5 @@
 package pokemon.server.service;
 
-import pokemon.server.dto.PokemonInfo;
 import pokemon.server.persistence.model.Pokemon;
 
 public interface IPokemonService {
@@ -9,5 +8,7 @@ public interface IPokemonService {
 
     int nextFreeId(String username, int teamId);
 
-    PokemonInfo findInfoById(Pokemon.Id id);
+    Pokemon findById(Pokemon.Id id);
+
+    void delete(Pokemon.Id id);
 }

@@ -37,7 +37,7 @@ public class TeamService implements ITeamService {
     }
 
     @Override
-    public int nextFreeId() {
-        return repository.nextFreeId();
+    public int nextFreeId(String username) {
+        return repository.nextFreeId(username);
     }
 }

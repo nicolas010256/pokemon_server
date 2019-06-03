@@ -31,7 +31,7 @@ public class WildPokemonController {
     @Autowired
     private IWildPokemonService service;
     
-    @GetMapping()
+    @GetMapping
     public CustomPage getPokemon(
             @RequestParam(value = "size", defaultValue = "20") int size,
             @RequestParam(value = "page", defaultValue = "0") int page,

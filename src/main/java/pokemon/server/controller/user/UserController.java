@@ -25,8 +25,8 @@ public class UserController {
     @Autowired
     private IUserService service;
 
-    @PostMapping("")
-    public void registerNewUser(@RequestBody SignUpInfo info, HttpServletResponse res) {
+    @PostMapping
+    public void createUser(@RequestBody SignUpInfo info, HttpServletResponse res) {
         service.registerNewUserAccount(info);
         try {
             String token = authService.addAuthentication(info.getUsername());

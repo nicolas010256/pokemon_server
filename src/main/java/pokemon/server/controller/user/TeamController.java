@@ -34,17 +34,17 @@ public class TeamController {
     private ITeamService service;
     
     @CrossOrigin
-    @PostMapping()
+    @PostMapping
     public int createTeam(@RequestAttribute("username") String username, @RequestBody TeamInfo info) {
         Team team = new Team();
-        Team.Id id = new Team.Id(service.nextFreeId(), username);
+        Team.Id id = new Team.Id(service.nextFreeId(username), username);
         team.setId(id);
         team.setName(info.getName());
         service.save(team);
         return id.getTeamId();
     }
 
-    @GetMapping()
+    @GetMapping
     public CustomPage getAllTeams(@RequestAttribute("username") String username,
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "20") int size,
