@@ -75,14 +75,6 @@ public class WildPokemonController {
 
     @GetMapping("/{id}")
     public WildPokemonDetailed getPokemon(@PathVariable("id") int id, HttpServletRequest request) {
-
-        Enumeration<String> headersNames = request.getHeaderNames();
-
-        while (headersNames.hasMoreElements()) {
-            String name = headersNames.nextElement();
-            System.out.println(name + ": " + request.getHeader(name));
-        }
-
         WildPokemon wildPokemon = service.findById(id);
 
         WildPokemonDetailed wildPokemonDetailed = new WildPokemonDetailed();

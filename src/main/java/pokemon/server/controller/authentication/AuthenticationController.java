@@ -28,7 +28,7 @@ public class AuthenticationController {
   @PostMapping()
   public void authenticate(@RequestBody AccountCredentials credentials, HttpServletResponse res) {
 
-    if (userService.verifyUser(credentials)) {
+    if (userService.verifyUser(credentials.getUsername(), credentials.getPassword())) {
       try {
         String token = authService.addAuthentication(credentials.getUsername());
         res.setHeader("Authorization", "Bearer " + token);

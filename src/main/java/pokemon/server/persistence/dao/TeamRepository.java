@@ -17,6 +17,6 @@ public interface TeamRepository extends JpaRepository<Team, Team.Id> {
 
     // @Query("SELECT (COUNT(t.id.teamId) + 1) FROM Team t")
     @Procedure(procedureName = "TEAM_FREE_ID")
-    int nextFreeId(@Param("USERNAME_IN") String username);
+    int nextFreeId(String username);
 
 }

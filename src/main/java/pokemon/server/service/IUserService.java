@@ -1,15 +1,12 @@
 package pokemon.server.service;
 
-import pokemon.server.dto.AccountCredentials;
-import pokemon.server.dto.SignUpInfo;
-import pokemon.server.exception.UserException;
 import pokemon.server.persistence.model.User;
 
 public interface IUserService {
 
-    User registerNewUserAccount(SignUpInfo info) throws UserException;
+    void save(User user);
 
     User findByUsername(String username);
 
-    Boolean verifyUser(AccountCredentials credentials);
+    Boolean verifyUser(String username, String password);
 }

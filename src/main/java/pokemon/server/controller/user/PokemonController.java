@@ -103,6 +103,7 @@ public class PokemonController {
 
         PokemonDetailed pokemonDetailed = new PokemonDetailed();
         pokemonDetailed.setId(pokemon.getId().getTeamPokemonId());
+        pokemonDetailed.setWildPokemonId(pokemon.getWildPokemon().getId());
         pokemonDetailed.setName(pokemon.getNickname());
         pokemonDetailed.setSprite(pokemon.getWildPokemon().getSprite());
 
@@ -118,11 +119,14 @@ public class PokemonController {
 
         pokemonDetailed.setAbility(ability);
 
-        PokemonDetailed.Item item = new PokemonDetailed().getItem();
-        item.setId(pokemon.getItem().getId());
-        item.setName(pokemon.getItem().getName());
+        if (pokemon.getItem() != null) {
 
-        pokemonDetailed.setItem(item);
+            PokemonDetailed.Item item = new PokemonDetailed.Item();
+            item.setId(pokemon.getItem().getId());
+            item.setName(pokemon.getItem().getName());
+
+            pokemonDetailed.setItem(item); 
+        }
 
         List<PokemonDetailed.Move> moves = new ArrayList<PokemonDetailed.Move>();
 
@@ -146,25 +150,29 @@ public class PokemonController {
 
         pokemonDetailed.setStats(stats);
 
-        PokemonDetailed.Stats ivs = new PokemonDetailed.Stats();
-        ivs.setHp(pokemon.getIvs().getHp());
-        ivs.setAtk(pokemon.getIvs().getAtk());
-        ivs.setDef(pokemon.getIvs().getDef());
-        ivs.setSpAtk(pokemon.getIvs().getSpAtk());
-        ivs.setSpDef(pokemon.getIvs().getSpDef());
-        ivs.setSpeed(pokemon.getIvs().getSpeed());
+        if (pokemon.getIvs() != null) {
+            PokemonDetailed.Stats ivs = new PokemonDetailed.Stats();
+            ivs.setHp(pokemon.getIvs().getHp());
+            ivs.setAtk(pokemon.getIvs().getAtk());
+            ivs.setDef(pokemon.getIvs().getDef());
+            ivs.setSpAtk(pokemon.getIvs().getSpAtk());
+            ivs.setSpDef(pokemon.getIvs().getSpDef());
+            ivs.setSpeed(pokemon.getIvs().getSpeed());
 
-        pokemonDetailed.setIvs(ivs);
-        
-        PokemonDetailed.Stats evs = new PokemonDetailed.Stats();
-        evs.setHp(pokemon.getEvs().getHp());
-        evs.setAtk(pokemon.getEvs().getAtk());
-        evs.setDef(pokemon.getEvs().getDef());
-        evs.setSpAtk(pokemon.getEvs().getSpAtk());
-        evs.setSpDef(pokemon.getEvs().getSpDef());
-        evs.setSpeed(pokemon.getEvs().getSpeed());
+            pokemonDetailed.setIvs(ivs); 
+        }
 
-        pokemonDetailed.setEvs(evs);         
+        if (pokemon.getEvs() != null ) {
+            PokemonDetailed.Stats evs = new PokemonDetailed.Stats();
+            evs.setHp(pokemon.getEvs().getHp());
+            evs.setAtk(pokemon.getEvs().getAtk());
+            evs.setDef(pokemon.getEvs().getDef());
+            evs.setSpAtk(pokemon.getEvs().getSpAtk());
+            evs.setSpDef(pokemon.getEvs().getSpDef());
+            evs.setSpeed(pokemon.getEvs().getSpeed());
+
+            pokemonDetailed.setEvs(evs);  
+        }       
 
         return pokemonDetailed;
     }

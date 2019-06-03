@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import pokemon.server.dto.SignUpInfo;
 import pokemon.server.exception.AuthenticationTokenException;
+import pokemon.server.persistence.model.User;
 import pokemon.server.service.AuthenticationService;
 import pokemon.server.service.IUserService;
 
@@ -27,7 +28,15 @@ public class UserController {
 
     @PostMapping
     public void createUser(@RequestBody SignUpInfo info, HttpServletResponse res) {
-        service.registerNewUserAccount(info);
+
+        User user = new User();
+        user.setUsername(info.getUsername());
+        user.setEmail(info.getEmail());
+        user.setPassword(info.getPassword());
+        user.setEnabled(true);
+
+        service.save(user);
+
         try {
             String token = authService.addAuthentication(info.getUsername());
             res.setHeader("Authorization", "Bearer " + token);
