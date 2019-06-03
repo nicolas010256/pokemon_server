@@ -37,60 +37,62 @@ public class PokemonController {
 
     @PostMapping
     public void createPokemon(@RequestAttribute("username") String username, 
-            @PathVariable("teamId") int teamId, @RequestBody Poke info) {
+            @PathVariable("teamId") int teamId, @RequestBody List<Poke> list) {
+
+        list.forEach(info -> {
+            Pokemon pokemon = new Pokemon();
         
-        Pokemon pokemon = new Pokemon();
+            Pokemon.Id id = new Pokemon.Id(service.nextFreeId(username, teamId), teamId, username);
+            pokemon.setId(id);
+
+            WildPokemon p = new WildPokemon();
+            p.setId(info.getPokemonId());
+            pokemon.setWildPokemon(p);
+
+            pokemon.setNickname(info.getName());
+
+            Ability ability = new Ability();
+            ability.setId(info.getAbilityId());
+            pokemon.setAbility(ability);
+
+            Nature nature = new Nature();
+            nature.setId(info.getNatureId());
+            pokemon.setNature(nature);
+
+            Item item = new Item();
+            item.setId(info.getItemId());
+            pokemon.setItem(item);
+
+            Stats ivs = new Stats();
+            ivs.setHp(info.getIvs().getHp());
+            ivs.setAtk(info.getIvs().getAtk());
+            ivs.setDef(info.getIvs().getDef());
+            ivs.setSpAtk(info.getIvs().getSpAtk());
+            ivs.setSpDef(info.getIvs().getSpDef());
+            ivs.setSpeed(info.getIvs().getSpeed());
+            pokemon.setIvs(ivs);
+
+            Stats evs = new Stats();
+            evs.setHp(info.getEvs().getHp());
+            evs.setAtk(info.getEvs().getAtk());
+            evs.setDef(info.getEvs().getDef());
+            evs.setSpAtk(info.getEvs().getSpAtk());
+            evs.setSpDef(info.getEvs().getSpDef());
+            evs.setSpeed(info.getEvs().getSpeed());
+            pokemon.setEvs(evs);
+
+            List<Move> moves = new ArrayList<Move>();
         
-        Pokemon.Id id = new Pokemon.Id(service.nextFreeId(username, teamId), teamId, username);
-        pokemon.setId(id);
+            info.getMoves().forEach(i -> {
+                Move move = new Move();
+                move.setId(i);
+                moves.add(move);
+            });
 
-        WildPokemon p = new WildPokemon();
-        p.setId(info.getPokemonId());
-        pokemon.setWildPokemon(p);
+            pokemon.setMoves(moves);
 
-        pokemon.setNickname(info.getName());
-
-        Ability ability = new Ability();
-        ability.setId(info.getAbilityId());
-        pokemon.setAbility(ability);
-
-        Nature nature = new Nature();
-        nature.setId(info.getNatureId());
-        pokemon.setNature(nature);
-
-        Item item = new Item();
-        item.setId(info.getItemId());
-        pokemon.setItem(item);
-
-        Stats ivs = new Stats();
-        ivs.setHp(info.getIvs().getHp());
-        ivs.setAtk(info.getIvs().getAtk());
-        ivs.setDef(info.getIvs().getDef());
-        ivs.setSpAtk(info.getIvs().getSpAtk());
-        ivs.setSpDef(info.getIvs().getSpDef());
-        ivs.setSpeed(info.getIvs().getSpeed());
-        pokemon.setIvs(ivs);
-
-        Stats evs = new Stats();
-        evs.setHp(info.getEvs().getHp());
-        evs.setAtk(info.getEvs().getAtk());
-        evs.setDef(info.getEvs().getDef());
-        evs.setSpAtk(info.getEvs().getSpAtk());
-        evs.setSpDef(info.getEvs().getSpDef());
-        evs.setSpeed(info.getEvs().getSpeed());
-        pokemon.setEvs(evs);
-
-        List<Move> moves = new ArrayList<Move>();
-    
-        info.getMoves().forEach(i -> {
-            Move move = new Move();
-            move.setId(i);
-            moves.add(move);
+            service.save(pokemon);
         });
-
-        pokemon.setMoves(moves);
-
-        service.save(pokemon);
     }
 
     @GetMapping("/{id}")
