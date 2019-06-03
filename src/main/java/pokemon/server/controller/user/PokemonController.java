@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import pokemon.server.dto.Poke;
 import pokemon.server.dto.PokemonDetailed;
-import pokemon.server.dto.PokemonInfo;
 import pokemon.server.persistence.model.Ability;
 import pokemon.server.persistence.model.Item;
 import pokemon.server.persistence.model.Move;
