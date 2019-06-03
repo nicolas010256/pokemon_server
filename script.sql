@@ -164,6 +164,21 @@ BEGIN
 END//
 DELIMITER ;
 
+-- Triggers --
+
+DELIMITER //
+CREATE TRIGGER INS_NOME_POKEMON
+BEFORE INSERT
+ON `POKEMON`
+FOR EACH ROW
+BEGIN
+	IF NEW.NICKNAME IS NULL OR NEW.NICKNAME = "" THEN
+		SELECT NAME INTO @NICKNAME FROM `WILD_POKEMON` WHERE `ID` = NEW.WILD_POKEMON_ID;
+        SET NEW.NICKNAME = @NICKNAME;
+    END IF;
+END//
+DELIMITER ;
+
 -- select * from `wild_pokemon`;
 -- select * from `type`;
 -- select * from `wild_pokemon_type`;
