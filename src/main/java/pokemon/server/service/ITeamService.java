@@ -13,5 +13,7 @@ public interface ITeamService {
 
     void delete(Team.Id id);
 
+    void delete(Team team);
+
     int nextFreeId(String username);
 }

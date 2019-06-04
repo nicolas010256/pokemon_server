@@ -16,6 +16,9 @@ public class TeamService implements ITeamService {
     @Autowired
     private TeamRepository repository;
 
+    @Autowired
+    private IPokemonService pService;
+
     @Override
     public void save(Team team) {
         repository.save(team);
@@ -39,5 +42,13 @@ public class TeamService implements ITeamService {
     @Override
     public int nextFreeId(String username) {
         return repository.nextFreeId(username);
+    }
+
+    @Override
+    public void delete(Team team) {
+        team.getPokemon().forEach(pokemon -> {
+            pService.delete(pokemon.getId());
+        });
+        repository.delete(team);
     }
 }

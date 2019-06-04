@@ -122,6 +122,7 @@ public class TeamController {
 
     @DeleteMapping("/{id}")
     public void deleteTeam(@RequestAttribute("username") String username, @PathVariable("id") int id) {
-        service.delete(new Team.Id(id, username));
+        Team team = service.findById(new Team.Id(id, username));
+        service.delete(team);
     }
 }
