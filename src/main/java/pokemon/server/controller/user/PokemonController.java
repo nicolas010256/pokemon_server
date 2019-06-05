@@ -27,70 +27,121 @@ import pokemon.server.persistence.model.Stats;
 import pokemon.server.persistence.model.WildPokemon;
 import pokemon.server.service.IPokemonService;
 
+// Habilita Cross-Origin Resource Sharing para a classe
 @CrossOrigin
+// Define que a classe é um contralador REST
 @RestController
+// Define a rota base para a classe
 @RequestMapping("/user/team/{teamId}/pokemon")
 public class PokemonController {
 
+    // Define que o spring faça o gerenciamento (Dependency Injection) do atributo
     @Autowired
+    // Serviço de pokemon
     private IPokemonService service;
 
+    // Mapeia uma requisição POST para o método, na rota /user/team/{teamId}/pokemon
+    // {id} - parâmetro que fará parte da URL. Ex: /user/team/1/pokemon
     @PostMapping
+    // @RequestAttribute - atributo da requisição
+    // @PathVariable - define que o parâmetro fará parte da URL
+    // @RequestBody - indidca que a informação virá no corpo (body) da requisição
     public void createPokemon(@RequestAttribute("username") String username, 
             @PathVariable("teamId") int teamId, @RequestBody List<Poke> list) {
 
+        // Para cada item da lista, cria um pokemon
         list.forEach(info -> {
+            // Cria model Pokemon
             Pokemon pokemon = new Pokemon();
         
+            // Cria id do model, com o pokemon id, team id e username
+            // service.nextFreeId - pega o próximo id livre na sequência
             Pokemon.Id id = new Pokemon.Id(service.nextFreeId(username, teamId), teamId, username);
+            // Passa o id para entidade
             pokemon.setId(id);
 
+            // Cria pokemon selvagem
             WildPokemon p = new WildPokemon();
+            // Passa id do pokemon selvagem
             p.setId(info.getPokemonId());
+            // Passa pokemon selvagem para o model Pokemon
             pokemon.setWildPokemon(p);
 
+            // Passa nickname
             pokemon.setNickname(info.getName());
 
+            // Cria model Ability
             Ability ability = new Ability();
+            // Passa id
             ability.setId(info.getAbilityId());
+            // Passa ability para o Pokemon
             pokemon.setAbility(ability);
 
+            // Cria model Nature
             Nature nature = new Nature();
+            // Passa id
             nature.setId(info.getNatureId());
+            // Passa nature para o Pokemon
             pokemon.setNature(nature);
 
+            // Cria model Item
             Item item = new Item();
+            // Passa id
             item.setId(info.getItemId());
+            // Passa item para o pokemon
             pokemon.setItem(item);
 
+            // Cria model para ivs
             Stats ivs = new Stats();
+            // Passa hp
             ivs.setHp(info.getIvs().getHp());
+            // Passa atk
             ivs.setAtk(info.getIvs().getAtk());
+            // Passa def
             ivs.setDef(info.getIvs().getDef());
+            // Passa spAtk
             ivs.setSpAtk(info.getIvs().getSpAtk());
+            // Passa spDef
             ivs.setSpDef(info.getIvs().getSpDef());
+            // Passa speed
             ivs.setSpeed(info.getIvs().getSpeed());
+            // Passa ivs para o Pokemon
             pokemon.setIvs(ivs);
 
+            // Cria model para evs
             Stats evs = new Stats();
+            // Passa hp
             evs.setHp(info.getEvs().getHp());
+            // Passa atk
             evs.setAtk(info.getEvs().getAtk());
+            // Passa def
             evs.setDef(info.getEvs().getDef());
+            // Passa spAtk
             evs.setSpAtk(info.getEvs().getSpAtk());
+            // Passa spDef
             evs.setSpDef(info.getEvs().getSpDef());
+            // Passa speed
             evs.setSpeed(info.getEvs().getSpeed());
+            // Passa evs para o Pokemon
             pokemon.setEvs(evs);
 
+            // Cria uma lista de moves;
             List<Move> moves = new ArrayList<Move>();
         
+            // Para cada move no DTO, cria um move e adiciona na lista
             info.getMoves().forEach(i -> {
+                // Cria move
                 Move move = new Move();
+                // Passa id
                 move.setId(i);
+                // Adiciona na lista
                 moves.add(move);
             });
 
+            // Passa moves para o Pokemon
             pokemon.setMoves(moves);
 
+            // Salva o Pokemon
             service.save(pokemon);
         });
     }
@@ -228,11 +279,16 @@ public class PokemonController {
 
         service.save(pokemon);
     }
-
+    
+    // Mapeia uma requisição DELETE para o método, na rota /user/team/{teamId}/pokemon/{id}
+    // {id} - parâmetro que fará parte da URL. Ex: /user/team/1/pokemon/1
     @DeleteMapping("/{id}")
+    // RequestsAttribute - atributo da requisição
+    // @PathVariable - define que o parâmetro fará parte da URL
     public void deletePokemon(@RequestAttribute("username") String username, 
             @PathVariable("teamId") int teamId,@PathVariable("id") int id) {
 
+        // Deleta o pokemon
         service.delete(new Pokemon.Id(id, teamId, username));
     }
 }

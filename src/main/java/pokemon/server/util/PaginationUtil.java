@@ -4,11 +4,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.util.UriComponentsBuilder;
 
 public class PaginationUtil {
-    private Page page;
+    private Page<? extends Object> page;
     private UriComponentsBuilder uriBuilder;
     
 
-    public PaginationUtil(Page page, UriComponentsBuilder uriBuilder) {
+    public PaginationUtil(Page<? extends Object> page, UriComponentsBuilder uriBuilder) {
         this.page = page;
         this.uriBuilder = uriBuilder;
     }
