@@ -92,6 +92,16 @@ public class WildPokemonController {
             // Passa a lista de tipos
             wildPokemonBrief.setTypes(types);
 
+            WildPokemonBrief.Stats stats = new WildPokemonBrief.Stats();
+            stats.setHp(wildPokemon.getStats().getHp());
+            stats.setAtk(wildPokemon.getStats().getAtk());
+            stats.setDef(wildPokemon.getStats().getDef());
+            stats.setSpAtk(wildPokemon.getStats().getSpAtk());
+            stats.setSpDef(wildPokemon.getStats().getSpDef());
+            stats.setSpeed(wildPokemon.getStats().getSpeed());
+
+            wildPokemonBrief.setStats(stats);
+
             // Adiciona na lista
             content.add(wildPokemonBrief);
         });

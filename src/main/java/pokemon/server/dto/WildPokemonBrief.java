@@ -21,6 +21,9 @@ public class WildPokemonBrief {
     @JsonProperty("types")
     private List<Type> types;
 
+    @JsonProperty("stats")
+    private Stats stats;
+
     public static class Type {
         
         @JsonProperty("id")
@@ -43,6 +46,74 @@ public class WildPokemonBrief {
 
         public void setName(String name) {
             this.name = name;
+        }
+    }
+
+    public static class Stats {
+        @JsonProperty("hp")
+        private Integer hp;
+
+        @JsonProperty("atk")
+        private Integer atk;
+
+        @JsonProperty("def")
+        private Integer def;
+
+        @JsonProperty("sp_atk")
+        private Integer spAtk;
+
+        @JsonProperty("sp_def")
+        private Integer spDef;
+
+        @JsonProperty("speed")
+        private Integer speed;
+
+        public Integer getHp() {
+            return hp;
+        }
+
+        public void setHp(Integer hp) {
+            this.hp = hp;
+        }
+
+        public Integer getAtk() {
+            return atk;
+        }
+
+        public void setAtk(Integer atk) {
+            this.atk = atk;
+        }
+
+        public Integer getDef() {
+            return def;
+        }
+
+        public void setDef(Integer def) {
+            this.def = def;
+        }
+
+        public Integer getSpAtk() {
+            return spAtk;
+        }
+
+        public void setSpAtk(Integer spAtk) {
+            this.spAtk = spAtk;
+        }
+
+        public Integer getSpDef() {
+            return spDef;
+        }
+
+        public void setSpDef(Integer spDef) {
+            this.spDef = spDef;
+        }
+
+        public Integer getSpeed() {
+            return speed;
+        }
+
+        public void setSpeed(Integer speed) {
+            this.speed = speed;
         }
     }
 
@@ -84,5 +155,13 @@ public class WildPokemonBrief {
 
     public void setTypes(List<Type> types) {
         this.types = types;
+    }
+
+    public Stats getStats() {
+        return stats;
+    }
+
+    public void setStats(Stats stats) {
+        this.stats = stats;
     }
 }

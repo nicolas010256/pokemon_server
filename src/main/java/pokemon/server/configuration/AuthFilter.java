@@ -30,7 +30,7 @@ public class AuthFilter implements Filter {
         // Especifica as origens habilitadas
         res.setHeader("Access-Control-Allow-Origin", "*");
         // Define os métodos HTTP habilitados
-        res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT,  DELETE");
         // Indica o tempo máximo que os headers podem ser colocados em cache pelo client
         res.setHeader("Access-Control-Max-Age", "3600");
         // Indica ao client quais são os headers aos quais ele tem acesso
@@ -50,7 +50,7 @@ public class AuthFilter implements Filter {
             if (username != null && !"".equals(username)) {
                 // Cria um atributo chamado username na requisição e passa o username do usuário autenticado
                 request.setAttribute("username", username);
-                // Passa a requisição e a resposta para o controller;
+                // Passa a requisição e a resposta para o controller
                 chain.doFilter(request, response);
             } else {
                 // Returna com o status code 401 (UNAUTHORIZED)
