@@ -20,6 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import pokemon.server.dto.CustomPage;
 import pokemon.server.dto.TeamBrief;
+import pokemon.server.dto.TeamDetailed;
 import pokemon.server.dto.TeamInfo;
 import pokemon.server.persistence.model.Team;
 import pokemon.server.service.ITeamService;
@@ -86,27 +87,89 @@ public class TeamController {
     }
 
     @GetMapping("/{id}")
-    public TeamBrief getTeam(@RequestAttribute("username") String username, @PathVariable("id") int id) {
+    public TeamDetailed getTeam(@RequestAttribute("username") String username, @PathVariable("id") int id) {
         Team team = service.findById(new Team.Id(id, username));
 
-        TeamBrief teamBrief = new TeamBrief();
-        teamBrief.setId(team.getId().getTeamId());
-        teamBrief.setName(team.getName());
+        TeamDetailed teamDetailed = new TeamDetailed();
+        teamDetailed.setId(team.getId().getTeamId());
+        teamDetailed.setName(team.getName());
 
-        List<TeamBrief.Pokemon> pokemon = new ArrayList<TeamBrief.Pokemon>();
+        List<TeamDetailed.Pokemon> pokemon = new ArrayList<TeamDetailed.Pokemon>();
 
         team.getPokemon().forEach(p -> {
-            TeamBrief.Pokemon pp = new TeamBrief.Pokemon();
+            TeamDetailed.Pokemon pp = new TeamDetailed.Pokemon();
             pp.setId(p.getId().getTeamPokemonId());
             pp.setName(p.getNickname());
             pp.setSprite(p.getWildPokemon().getSprite());
+            pp.setPokemonId(p.getWildPokemon().getId());
+            
+            TeamDetailed.Pokemon.Ability ability = new TeamDetailed.Pokemon.Ability();
+            ability.setId(p.getAbility().getId());
+            ability.setName(p.getAbility().getName());
+
+            pp.setAbility(ability);
+
+            TeamDetailed.Pokemon.Item item = new TeamDetailed.Pokemon.Item();
+            item.setId(p.getItem().getId());
+            item.setName(p.getItem().getName());
+
+            pp.setItem(item);
+
+            TeamDetailed.Pokemon.Nature nature = new TeamDetailed.Pokemon.Nature();
+            nature.setId(p.getNature().getId());
+            nature.setName(p.getNature().getName());
+
+            pp.setNature(nature);
+
+            TeamDetailed.Pokemon.Stats stats = new TeamDetailed.Pokemon.Stats();
+            stats.setHp(p.getWildPokemon().getStats().getHp());
+            stats.setAtk(p.getWildPokemon().getStats().getAtk());
+            stats.setDef(p.getWildPokemon().getStats().getDef());
+            stats.setSpAtk(p.getWildPokemon().getStats().getSpAtk());
+            stats.setSpDef(p.getWildPokemon().getStats().getSpDef());
+            stats.setSpeed(p.getWildPokemon().getStats().getSpeed());
+
+            pp.setStats(stats);
+
+            TeamDetailed.Pokemon.Stats ivs = new TeamDetailed.Pokemon.Stats();
+            stats.setHp(p.getIvs().getHp());
+            stats.setAtk(p.getIvs().getAtk());
+            stats.setDef(p.getIvs().getDef());
+            stats.setSpAtk(p.getIvs().getSpAtk());
+            stats.setSpDef(p.getIvs().getSpDef());
+            stats.setSpeed(p.getIvs().getSpeed());
+
+            pp.setIvs(ivs);
+
+            TeamDetailed.Pokemon.Stats evs = new TeamDetailed.Pokemon.Stats();
+            stats.setHp(p.getEvs().getHp());
+            stats.setAtk(p.getEvs().getAtk());
+            stats.setDef(p.getEvs().getDef());
+            stats.setSpAtk(p.getEvs().getSpAtk());
+            stats.setSpDef(p.getEvs().getSpDef());
+            stats.setSpeed(p.getEvs().getSpeed());
+
+            pp.setEvs(evs);
+
+
+            List<TeamDetailed.Pokemon.Move> moves = new ArrayList<>();
+
+            p.getMoves().forEach(m -> {
+                TeamDetailed.Pokemon.Move move = new  TeamDetailed.Pokemon.Move();
+                move.setId(m.getId());
+                move.setName(m.getName());
+
+                moves.add(move);
+            });
+
+            pp.setMoves(moves);
 
             pokemon.add(pp);
         });
 
-        teamBrief.setPokemon(pokemon);
+        teamDetailed.setPokemon(pokemon);
 
-        return teamBrief;
+        return teamDetailed;
     }
 
     @PutMapping("/{id}")
