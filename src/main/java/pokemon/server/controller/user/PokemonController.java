@@ -291,15 +291,17 @@ public class PokemonController {
                 evs.setSpeed(info.getEvs().getSpeed());
         }
 
-        List<Move> moves = new ArrayList<Move>();
+        if (info.getMoves() != null) {
+            List<Move> moves = new ArrayList<Move>();
     
-        info.getMoves().forEach(i -> {
-            Move move = new Move();
-            move.setId(i);
-            moves.add(move);
-        });
+            info.getMoves().forEach(i -> {
+                Move move = new Move();
+                move.setId(i);
+                moves.add(move);
+            });
 
-        pokemon.setMoves(moves);
+            pokemon.setMoves(moves);
+        }
 
         service.save(pokemon);
     }
