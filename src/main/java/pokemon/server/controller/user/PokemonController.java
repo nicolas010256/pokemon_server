@@ -235,37 +235,61 @@ public class PokemonController {
 
         Pokemon pokemon = service.findById(new Pokemon.Id(id, teamId, username));
 
-        pokemon.setNickname(info.getName());
+        if (info.getName() != null) {
+            pokemon.setNickname(info.getName());
+        }
 
-        Ability ability = new Ability();
-        ability.setId(info.getAbilityId());
-        pokemon.setAbility(ability);
+        if (info.getAbilityId() != null) {
+            Ability ability = new Ability();
+            ability.setId(info.getAbilityId());
+            pokemon.setAbility(ability);
+        }
 
-        Nature nature = new Nature();
-        nature.setId(info.getNatureId());
-        pokemon.setNature(nature);
+        if (info.getNatureId() != null) {
+            Nature nature = new Nature();
+            nature.setId(info.getNatureId());
+            pokemon.setNature(nature);
+        }
+        
+        if (info.getItemId() != null) {
+            Item item = new Item();
+            item.setId(info.getItemId());
+            pokemon.setItem(item);
+        }
 
-        Item item = new Item();
-        item.setId(info.getItemId());
-        pokemon.setItem(item);
+        if (info.getIvs() != null) {
+            Stats ivs = pokemon.getIvs();
 
-        Stats ivs = new Stats();
-        ivs.setHp(info.getIvs().getHp());
-        ivs.setAtk(info.getIvs().getAtk());
-        ivs.setDef(info.getIvs().getDef());
-        ivs.setSpAtk(info.getIvs().getSpAtk());
-        ivs.setSpDef(info.getIvs().getSpDef());
-        ivs.setSpeed(info.getIvs().getSpeed());
-        pokemon.setIvs(ivs);
+            if (info.getIvs().getHp() != null)
+                ivs.setHp(info.getIvs().getHp());
+            if (info.getIvs().getAtk() != null)
+                ivs.setAtk(info.getIvs().getAtk());
+            if (info.getIvs().getDef() != null)
+                ivs.setDef(info.getIvs().getDef());
+            if (info.getIvs().getSpAtk() != null)
+                ivs.setSpAtk(info.getIvs().getSpAtk());
+            if (info.getIvs().getSpDef() != null)
+                ivs.setSpDef(info.getIvs().getSpDef());
+            if (info.getIvs().getSpeed() != null)
+                ivs.setSpeed(info.getIvs().getSpeed());
+        }
 
-        Stats evs = new Stats();
-        evs.setHp(info.getEvs().getHp());
-        evs.setAtk(info.getEvs().getAtk());
-        evs.setDef(info.getEvs().getDef());
-        evs.setSpAtk(info.getEvs().getSpAtk());
-        evs.setSpDef(info.getEvs().getSpDef());
-        evs.setSpeed(info.getEvs().getSpeed());
-        pokemon.setEvs(evs);
+        if (info.getEvs() != null) {
+            Stats evs = pokemon.getIvs();
+
+            if (info.getEvs().getHp() != null)
+                evs.setHp(info.getEvs().getHp());
+            if (info.getEvs().getAtk() != null)
+                evs.setAtk(info.getEvs().getAtk());
+            if (info.getEvs().getDef() != null)
+                evs.setDef(info.getEvs().getDef());
+            if (info.getEvs().getSpAtk() != null)
+                evs.setSpAtk(info.getEvs().getSpAtk());
+            if (info.getEvs().getSpDef() != null)
+                evs.setSpDef(info.getEvs().getSpDef());
+            if (info.getEvs().getSpeed() != null)
+                evs.setSpeed(info.getEvs().getSpeed());
+        }
 
         List<Move> moves = new ArrayList<Move>();
     
