@@ -175,10 +175,9 @@ public class TeamController {
     @PutMapping("/{id}")
     public void updateTeam(@RequestAttribute("username") String username, @PathVariable("id") int teamId,
              @RequestBody String name) {
-
-        Team team = new Team();
+       
         Team.Id id = new Team.Id(teamId, username);
-        team.setId(id);
+        Team team = service.findById(id);
         team.setName(name);
         service.save(team);
     }
