@@ -9,13 +9,13 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import pokemon.server.exception.AuthenticationTokenException;
+import pokemon.server.exception.ConflictException;
 import pokemon.server.exception.ResourceNotFoundException;
 
 @ControllerAdvice
-public class RestResponseStatusExceptionResolver extends ResponseEntityExceptionHandler {
+public class RestExceptionHandler extends ResponseEntityExceptionHandler {
  
-    @ExceptionHandler(value 
-      = { ResourceNotFoundException.class })
+    @ExceptionHandler(value = { ResourceNotFoundException.class })
     protected ResponseEntity<Object> handleNotFound(
       RuntimeException ex, WebRequest request) {
         String bodyOfResponse = ex.getMessage();
@@ -23,12 +23,19 @@ public class RestResponseStatusExceptionResolver extends ResponseEntityException
           new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
-    @ExceptionHandler(value 
-    = {AuthenticationTokenException.class})
+    @ExceptionHandler(value = {AuthenticationTokenException.class})
     protected ResponseEntity<Object> handlerInvalideToken(
       RuntimeException ex, WebRequest request) {
         String bodyOfResponse = ex.getMessage();
         return handleExceptionInternal(ex, bodyOfResponse, 
           new HttpHeaders(), HttpStatus.UNAUTHORIZED, request);
+    }
+
+    @ExceptionHandler(value = {ConflictException.class})
+    protected ResponseEntity<Object> handlerConflict(
+      RuntimeException ex, WebRequest request) {
+        String bodyOfResponse = ex.getMessage();
+        return handleExceptionInternal(ex, bodyOfResponse, 
+          new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 }

@@ -1,9 +1,12 @@
 package pokemon.server.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import pokemon.server.exception.ResourceNotFoundException;
 import pokemon.server.persistence.dao.UserRepository;
 import pokemon.server.persistence.model.User;
 
@@ -17,18 +20,23 @@ public class UserService implements IUserService {
     private UserRepository repository;
 
     @Override
-    public User findByUsername(String username) {
-        return repository.findByUsername(username);
+    public User findByUsername(String username) throws ResourceNotFoundException {
+        Optional<User> user = repository.findByUsername(username);
+        if (user.isPresent()){
+            return user.get();
+        }
+        
+        throw new ResourceNotFoundException("User Not Found!");
     }
 
     @Override
-	public Boolean verifyUser(String username, String password) {
-        User user = repository.findById(username).get();
-        if (user != null) {
-            return passwordEncoder.matches(password, user.getPassword());
-        } else {
-            return false;
+	public User findByUsernameAndPassword(String username, String password) {
+        User user = findByUsername(username);
+        if (passwordEncoder.matches(password, user.getPassword())) {
+            return user;
         }
+
+        throw new ResourceNotFoundException("User Not Found!");
     }
 
     @Override

@@ -174,17 +174,16 @@ public class TeamController {
 
     @PutMapping("/{id}")
     public void updateTeam(@RequestAttribute("username") String username, @PathVariable("id") int teamId,
-             @RequestBody String name) {
+             @RequestBody TeamInfo info) {
        
         Team.Id id = new Team.Id(teamId, username);
         Team team = service.findById(id);
-        team.setName(name);
+        team.setName(info.getName());
         service.save(team);
     }
 
     @DeleteMapping("/{id}")
     public void deleteTeam(@RequestAttribute("username") String username, @PathVariable("id") int id) {
-        Team team = service.findById(new Team.Id(id, username));
-        service.delete(team);
+        service.delete(new Team.Id(id, username));
     }
 }

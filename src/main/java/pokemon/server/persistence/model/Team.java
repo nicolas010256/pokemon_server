@@ -29,7 +29,6 @@ public class Team {
         @JoinColumn(name = "TEAM_ID"),
         @JoinColumn(name = "USERNAME")
     })
-    // @Cascade(CascadeType.ALL)
     private List<Pokemon> pokemon = new ArrayList<Pokemon>();
 
     @Embeddable

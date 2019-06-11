@@ -1,12 +1,13 @@
 package pokemon.server.service;
 
+import pokemon.server.exception.ResourceNotFoundException;
 import pokemon.server.persistence.model.User;
 
 public interface IUserService {
 
     void save(User user);
 
-    User findByUsername(String username);
+    User findByUsername(String username) throws ResourceNotFoundException;
 
-    Boolean verifyUser(String username, String password);
+    User findByUsernameAndPassword(String username, String password) throws ResourceNotFoundException;
 }
