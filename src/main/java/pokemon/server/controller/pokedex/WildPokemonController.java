@@ -201,6 +201,14 @@ public class WildPokemonController {
             // Passa name
             m.setName(move.getName());
 
+            m.setPower(move.getPower());
+
+            m.setAccuracy(move.getAccuracy());
+
+            m.setType(move.getType().getName());
+
+            m.setDamageCategory(move.getDamageCategory());
+
             // Adiciona na lista
             moves.add(m);
         });

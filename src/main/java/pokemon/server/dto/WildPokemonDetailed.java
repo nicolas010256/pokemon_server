@@ -157,6 +157,18 @@ public class WildPokemonDetailed {
         @JsonProperty("name")
         private String name;
 
+        @JsonProperty("type")
+        private String type;
+
+        @JsonProperty("power")
+        private Integer power;
+        
+        @JsonProperty("accuracy")
+        private Integer accuracy;
+
+        @JsonProperty("damage_category")
+        private String damageCategory;
+
         public int getId() {
             return id;
         }
@@ -171,6 +183,38 @@ public class WildPokemonDetailed {
 
         public void setName(String name) {
             this.name = name;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public Integer getPower() {
+            return power;
+        }
+
+        public void setPower(Integer power) {
+            this.power = power;
+        }
+
+        public Integer getAccuracy() {
+            return accuracy;
+        }
+
+        public void setAccuracy(Integer accuracy) {
+            this.accuracy = accuracy;
+        }
+
+        public String getDamageCategory() {
+            return damageCategory;
+        }
+
+        public void setDamageCategory(String damageCategory) {
+            this.damageCategory = damageCategory;
         }
     }
 
