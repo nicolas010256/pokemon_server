@@ -303,7 +303,7 @@ public class PokemonController {
             pokemon.setMoves(moves);
         }
 
-        service.save(pokemon);
+        service.update(pokemon);
     }
     
     // Mapeia uma requisição DELETE para o método, na rota /user/team/{teamId}/pokemon/{id}
