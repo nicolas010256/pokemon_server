@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
@@ -24,10 +25,10 @@ public class Team {
     @Column(name = "NAME")
     private String name;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval=true)
     @JoinColumns({
-        @JoinColumn(name = "TEAM_ID"),
-        @JoinColumn(name = "USERNAME")
+        @JoinColumn(name = "TEAM_ID", nullable = false, insertable = false, updatable = false),
+        @JoinColumn(name = "USERNAME", nullable = false, insertable = false, updatable = false)
     })
     private List<Pokemon> pokemon = new ArrayList<Pokemon>();
 
