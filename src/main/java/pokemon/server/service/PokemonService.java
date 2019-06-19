@@ -22,9 +22,9 @@ public class PokemonService  implements IPokemonService {
         Optional<Pokemon> p = repository.findById(pokemon.getId());
         if (!p.isPresent()) {
             repository.save(pokemon);
+        } else {
+            throw new ConflictException("Pokemon Already Exists!"); 
         }
-        
-        throw new ConflictException("Pokemon Already Exists!");
     }
 
     @Override
