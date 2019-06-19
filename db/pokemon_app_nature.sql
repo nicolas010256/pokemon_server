@@ -17,7 +17,7 @@
 -- Dumping data for table `nature`
 --
 
-INSERT INTO nature (ID, NAME) VALUES (1,'Hardy'),(2,'Bold'),(3,'Modest'),(4,'Calm'),(5,'Timid'),(6,'Lonely'),(7,'Docile'),(8,'Mild'),(9,'Gentle'),(10,'Hasty'),(11,'Adamant'),(12,'Impish'),(13,'Bashful'),(14,'Careful'),(15,'Rash'),(16,'Jolly'),(17,'Naughty'),(18,'Lax'),(19,'Quirky'),(20,'Naive'),(21,'Brave'),(22,'Relaxed'),(23,'Quiet'),(24,'Sassy'),(25,'Serious');
+INSERT INTO NATURE (ID, NAME) VALUES (1,'Hardy'),(2,'Bold'),(3,'Modest'),(4,'Calm'),(5,'Timid'),(6,'Lonely'),(7,'Docile'),(8,'Mild'),(9,'Gentle'),(10,'Hasty'),(11,'Adamant'),(12,'Impish'),(13,'Bashful'),(14,'Careful'),(15,'Rash'),(16,'Jolly'),(17,'Naughty'),(18,'Lax'),(19,'Quirky'),(20,'Naive'),(21,'Brave'),(22,'Relaxed'),(23,'Quiet'),(24,'Sassy'),(25,'Serious');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

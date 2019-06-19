@@ -17,7 +17,7 @@
 -- Dumping data for table `type`
 --
 
-INSERT INTO type (ID, NAME) VALUES (1,'Normal'),(2,'Fighting'),(3,'Flying'),(4,'Poison'),(5,'Ground'),(6,'Rock'),(7,'Bug'),(8,'Ghost'),(9,'Steel'),(10,'Fire'),(11,'Water'),(12,'Grass'),(13,'Electric'),(14,'Psychic'),(15,'Ice'),(16,'Dragon'),(17,'Dark'),(18,'Fairy'),(10001,'Unknown'),(10002,'Shadow');
+INSERT INTO TYPE (ID, NAME) VALUES (1,'Normal'),(2,'Fighting'),(3,'Flying'),(4,'Poison'),(5,'Ground'),(6,'Rock'),(7,'Bug'),(8,'Ghost'),(9,'Steel'),(10,'Fire'),(11,'Water'),(12,'Grass'),(13,'Electric'),(14,'Psychic'),(15,'Ice'),(16,'Dragon'),(17,'Dark'),(18,'Fairy'),(10001,'Unknown'),(10002,'Shadow');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
