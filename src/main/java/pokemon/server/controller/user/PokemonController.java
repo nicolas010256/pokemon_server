@@ -64,6 +64,7 @@ public class PokemonController {
             WildPokemon p = new WildPokemon();
             // Passa id do pokemon selvagem
             p.setId(info.getPokemonId());
+
             // Passa pokemon selvagem para o model Pokemon
             pokemon.setWildPokemon(p);
 
